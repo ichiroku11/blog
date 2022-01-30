@@ -1,3 +1,3 @@
 ---
-title: "いちろぐ"
+layout: home
 ---
