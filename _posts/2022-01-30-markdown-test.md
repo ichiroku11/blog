@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Markdownのテスト
+title: "Markdownのテスト"
 ---
 
 # Header 1
