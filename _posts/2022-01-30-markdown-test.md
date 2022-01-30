@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Markdownのテスト"
 date: 2022-01-30
 ---
@@ -38,4 +37,5 @@ console.log("Hello");
 ```tsql
 print 'Hello'
 ```
+
 [View on GitHub](https://github.com/ichiroku11/blog)
