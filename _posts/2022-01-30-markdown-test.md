@@ -1,6 +1,8 @@
 ---
+layout: post
 title: "Markdownのテスト"
 date: 2022-01-30
+tags: misc
 ---
 
 # Header 1
