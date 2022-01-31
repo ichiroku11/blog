@@ -1,2 +1,6 @@
 title: "いちろぐ"
 theme: minima
+
+# https://github.com/jekyll/minima
+minima:
+  skin: dark
