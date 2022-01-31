@@ -4,4 +4,5 @@ theme: minima
 # https://github.com/jekyll/minima
 minima:
   date_format: "%Y-%m-%d"
-  skin: dark
+  # darkにならない？
+  # skin: dark
