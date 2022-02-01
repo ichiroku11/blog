@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "REST Clientを使ってMicrosoft Graph APIを呼び出す"
-date: 2022-02-
+date: 2022-02-02
 tags: vscode ms-graph
 ---
 
@@ -50,7 +50,7 @@ REST Clientでは`# @name getaccesstoken`でリクエストに名前を指定で
 
 ### 参考
 - [ユーザーなしでアクセスを取得 - Microsoft Graph | Microsoft Docs](https://docs.microsoft.com/ja-jp/graph/auth-v2-service)
-	4. アクセス トークンを取得する
-	5. アクセス トークンを使用して、Microsoft Graph を呼び出す
+  4. アクセス トークンを取得する
+  5. アクセス トークンを使用して、Microsoft Graph を呼び出す
 - [REST Client - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 - [Microsoft Graph API を使用する - Microsoft Graph | Microsoft Docs](https://docs.microsoft.com/ja-jp/graph/use-the-api)
