@@ -6,4 +6,6 @@ title: "いちろぐ"
 minima:
   date_format: "%Y-%m-%d"
   # darkにならない？
+  # skinの対応が3.0からでGitHub Pagesのminimaのバージョンが2.5.1だから？
+  # https://pages.github.com/versions/
   # skin: dark
