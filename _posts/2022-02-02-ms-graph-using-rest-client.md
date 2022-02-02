@@ -26,7 +26,7 @@ client_id={clientId}
 
 ### ユーザー一覧を取得
 GET https://graph.microsoft.com/v1.0/users
-Authorization: Bearer {{getaccesstoken.response.body.$.access_token}}
+Authorization: Bearer {% raw %}{{getaccesstoken.response.body.$.access_token}}{% endraw %}
 Host: graph.microsoft.com
 ```
 
@@ -45,7 +45,7 @@ Host: graph.microsoft.com
 ```
 
 REST Clientでは`# @name getaccesstoken`でリクエストに名前を指定できて（Request Variablesと呼ぶみたい）、
-レスポンスのアクセストークンを`{{getaccesstoken.response.body.$.access_token}}`で取得できます。
+レスポンスのアクセストークンを`{% raw %}{{getaccesstoken.response.body.$.access_token}}{% endraw %}`で取得できます。
 
 
 ### 参考
