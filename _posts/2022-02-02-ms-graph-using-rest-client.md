@@ -49,6 +49,6 @@ REST Clientでは`# @name getaccesstoken`でリクエストに名前を指定で
 
 
 ### 参考
-- [Microsoft Graph API を使用する - Microsoft Graph | Microsoft Docs](https://docs.microsoft.com/ja-jp/graph/use-the-api)
-- [ユーザーなしでアクセスを取得 - Microsoft Graph | Microsoft Docs](https://docs.microsoft.com/ja-jp/graph/auth-v2-service)
+- [Microsoft Graph API を使用する - Microsoft Graph &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/graph/use-the-api)
+- [ユーザーなしでアクセスを取得 - Microsoft Graph &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/graph/auth-v2-service)
 - [REST Client - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
