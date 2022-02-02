@@ -1,5 +1,6 @@
-title: "いちろぐ"
 theme: minima
+timezone: Asia/Tokyo
+title: "いちろぐ"
 
 # https://github.com/jekyll/minima
 minima:
