@@ -30,7 +30,12 @@ from (
 
 select * from #Temp;
 /*
-// todo:
+Name	Value
+a	1
+b	2
+c	3
+d	2
+e	3
 */
 ```
 
@@ -44,7 +49,9 @@ where [Value] = (
 	from #Temp
 );
 /*
-// todo:
+Name	Value
+c	3
+e	3
 */
 ```
 
@@ -62,6 +69,8 @@ select *
 from Cte
 where Rank = 1;
 /*
-// todo:
+Name	Value	Rank
+c	3	1
+e	3	1
 */
 ```
