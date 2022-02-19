@@ -58,7 +58,7 @@ e	3
 */
 ```
 
-### 相関サブクエリとnot existsを使う方法
+#### 相関サブクエリとnot existsを使う方法
 
 ```sql
 select *
