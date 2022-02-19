@@ -7,10 +7,13 @@ tags: t-sql
 
 「最大値」ではなく「最大値の行」を取得するクエリのサンプル。
 
-方法としてはとりあえず2つ。
+方法としてはとりあえず3つ思いつきました。
 
-- max関数を使う方法
+- サブクエリでmax関数を使う方法
+- 相関サブクエリとnot existsを使う方法
 - rank関数を使う方法
+
+わかりやすさとパフォーマンスで選択する感じですかね。
 
 #### サンプルデータ
 
@@ -39,7 +42,7 @@ e	3
 */
 ```
 
-#### max関数を使う方法
+#### サブクエリでmax関数を使う方法
 
 ```sql
 select *
@@ -47,6 +50,23 @@ from #Temp
 where [Value] = (
 	select max([Value])
 	from #Temp
+);
+/*
+Name	Value
+c	3
+e	3
+*/
+```
+
+### 相関サブクエリとnot existsを使う方法
+
+```sql
+select *
+from #Temp as t1
+where not exists(
+	select *
+	from #Temp as t2
+	where t2.Value > t1.Value
 );
 /*
 Name	Value
