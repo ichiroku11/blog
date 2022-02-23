@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Microsoft Graph APIでB2Cのユーザーのパスワードをリセットするにはユーザー管理者ロールが必要"
-date: 
+date: 2022-02-23
 tags: azure-ad-b2c ms-graph
 ---
 
-Microsoft Graph APIを使って、Azure AD B2Cのユーザーのパスワードをリセットするにはユーザー管理者ロールが必要とのことです。
+Microsoft Graph APIを使ってAzure AD B2Cのユーザーのパスワードをリセットするには、ユーザー管理者ロールが必要とのことです。
 
 以下より引用。
 
@@ -19,4 +19,4 @@ Microsoft Graph APIを使って、Azure AD B2Cのユーザーのパスワード�
 
 [ユーザーを更新する - Microsoft Graph v1.0 &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/graph/api/user-update?view=graph-rest-1.0&tabs=csharp#example-3-update-the-passwordprofile-of-a-user-to-reset-their-password)
 
-この説明には`Directory.AccessAsUser.All`が必要とありますが、ユーザー管理者ロールに含まれているのかな。
+ここの説明には`Directory.AccessAsUser.All`が必要とありますが、ユーザー管理者ロールに含まれているのかな。
