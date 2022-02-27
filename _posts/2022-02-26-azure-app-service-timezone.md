@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure App Service - タイムゾーンの変更"
-date: 
+date: 2022-02-26
 tags: azure-app-service
 ---
 

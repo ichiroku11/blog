@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure App Service - ASP.NET Coreのカルチャーを変更する"
-date: 
+date: 2022-02-27
 tags: azure-app-service aspnetcore
 ---
 
