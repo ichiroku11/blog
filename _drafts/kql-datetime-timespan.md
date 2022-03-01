@@ -18,3 +18,14 @@ KQLで日時のdatetime型と時間間隔のtimespan型、それらに関連す�
 - datetime_diff関数
 - ago/now関数
 
+### timespanのリテラル
+
+関数の前にまずリテラルのおさらい。
+
+```
+```
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/scalar-data-types/timespan
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/samples?pivots=azuremonitor#date-and-time-operations
+
+### datetime/timespanの演算
