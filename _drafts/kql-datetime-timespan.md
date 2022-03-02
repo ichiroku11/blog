@@ -5,7 +5,7 @@ date:
 tags: azure-monitor kql
 ---
 
-KQLで日時のdatetime型と時間間隔のtimespan型、それらに関連する関数のまとめです。
+KQLにおける日時のdatetime型と時間間隔のtimespan型、それらに関連する関数のまとめです。
 
 - timespanのリテラル
 - datetime/timespanの演算
@@ -20,12 +20,50 @@ KQLで日時のdatetime型と時間間隔のtimespan型、それらに関連す�
 
 ### timespanのリテラル
 
-関数の前にまずリテラルのおさらい。
+関数の前にまずtimespanのリテラルのおさらい。
 
 ```
+print
+	day = 1d,
+	hour = 2h,
+	minute = 3m,
+	second = 4s,
+	millisecond = 5ms,
+	microsecond = 6microsecond,
+	tick = 7tick
+/*
+day	1.00:00:00
+hour	02:00:00
+minute	00:03:00
+second	00:00:04
+millisecond	00:00:00.0050000
+microsecond	00:00:00.0000060
+tick	00:00:00.0000007
+*/
 ```
+
+// todo
 
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/scalar-data-types/timespan
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/samples?pivots=azuremonitor#date-and-time-operations
 
 ### datetime/timespanの演算
+
+datetimeとtimespanは演算できます。
+
+```
+let dt = datetime(2022-01-10);
+print
+	// 3日前
+	dt - 3d,
+	// 3日後
+	dt + 3d
+/*
+print_0 [UTC]	2022-01-07T00:00:00Z
+print_1 [UTC]	2022-01-13T00:00:00Z
+*/
+```
+
+// todo
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-timespan-arithmetic
