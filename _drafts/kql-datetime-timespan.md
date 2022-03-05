@@ -90,3 +90,30 @@ print_2 [UTC]	2022-02-22T00:00:00Z
 // todo
 
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/binfunction
+
+
+### startofday/startofmonth/startofweek/startofyear関数
+
+日・週・月・年の始まりの日を求める関数。
+
+```
+let dt = datetime(2022-03-01 11:12:13);
+print
+	dt = dt,
+	// 指定した日の始まり
+	startOfDay = startofday(dt),
+	// 指定した日の週の始まり（日曜）
+	startOfWeek = startofweek(dt),
+	// 指定した日の月の始まり（月初日）
+	startOfMonth = startofmonth(dt),
+	// 指定した日の年の始まり（年初日）
+	startOfYear = startofyear(dt)
+/*
+dt [UTC]	2022-03-01T11:12:13Z
+startOfDay [UTC]	2022-03-01T00:00:00Z
+startOfWeek [UTC]	2022-02-27T00:00:00Z
+startOfMonth [UTC]	2022-03-01T00:00:00Z
+startOfYear [UTC]	2022-01-01T00:00:00Z
+*/
+```
+
