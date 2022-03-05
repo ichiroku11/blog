@@ -104,9 +104,9 @@ print
 	startOfDay = startofday(dt),
 	// 指定した日の週の始まり（日曜）
 	startOfWeek = startofweek(dt),
-	// 指定した日の月の始まり（月初日）
+	// 指定した日の月の始まり（月初）
 	startOfMonth = startofmonth(dt),
-	// 指定した日の年の始まり（年初日）
+	// 指定した日の年の始まり（年初）
 	startOfYear = startofyear(dt)
 /*
 dt [UTC]	2022-03-01T11:12:13Z
@@ -117,3 +117,28 @@ startOfYear [UTC]	2022-01-01T00:00:00Z
 */
 ```
 
+
+### endofday/endofmonth/endofweek/endofyear関数
+
+日・週・月・年の終わりの日を求める関数。
+
+```
+let dt = datetime(2022-03-01 11:12:13);
+print
+	dt = dt,
+	// 指定した日の終わり
+	endOfDay = endofday(dt),
+	// 指定した日の週の終わり（土曜）
+	endOfWeek = endofweek(dt),
+	// 指定した日の月の終わり（月末）
+	endOfMonth = endofmonth(dt),
+	// 指定した日の年の終わり（年末）
+	endOfYear = endofyear(dt)
+/*
+dt [UTC]	2022-03-01T11:12:13Z
+endOfDay [UTC]	2022-03-01T23:59:59.9999999Z
+endOfWeek [UTC]	2022-03-05T23:59:59.9999999Z
+endOfMonth [UTC]	2022-03-31T23:59:59.9999999Z
+endOfYear [UTC]	2022-12-31T23:59:59.9999999Z
+*/
+```
