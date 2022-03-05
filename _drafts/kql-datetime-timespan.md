@@ -67,3 +67,26 @@ print_1 [UTC]	2022-01-13T00:00:00Z
 // todo
 
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-timespan-arithmetic
+
+### bin関数
+
+日付以外にも利用できますが、値を切り捨てする関数。
+
+```
+let dt = datetime(2022-02-22 11:12:13);
+print
+	dt,
+	// 時間までで切り捨て
+	bin(dt, 1h),
+	// 日までで切り捨て
+	bin(dt, 1d)
+/*
+print_0 [UTC]	2022-02-22T11:12:13Z
+print_1 [UTC]	2022-02-22T11:00:00Z
+print_2 [UTC]	2022-02-22T00:00:00Z
+*/
+```
+
+// todo
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/binfunction
