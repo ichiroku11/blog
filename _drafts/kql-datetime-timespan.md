@@ -142,3 +142,30 @@ endOfMonth [UTC]	2022-03-31T23:59:59.9999999Z
 endOfYear [UTC]	2022-12-31T23:59:59.9999999Z
 */
 ```
+
+
+### dayofweek/dayofmonth/dayofyear関数
+
+週初め・月初・年初からの日数を求める関数。
+
+dayoOfWeek関数の戻り値はtimespan型。dayofmonth/dayofyear関数の戻り値はint型。
+
+```
+let dt = datetime(2022-03-14 11:12:13);
+print
+	dt = dt,
+	// 週初め（日曜）からの日数
+	// 月曜なら1dになる
+	dayoOfWeek = dayofweek(dt),
+	// 月初からの日数
+	dayoOfMonth = dayofmonth(dt),
+	// 年初からの日数
+	dayoOfYear = dayofyear(dt)
+/*
+dt [UTC]	2022-03-14T11:12:13Z
+dayoOfWeek	1.00:00:00
+dayoOfMonth	14
+dayoOfYear	73
+*/
+```
+
