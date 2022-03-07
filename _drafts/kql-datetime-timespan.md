@@ -148,7 +148,7 @@ endOfYear [UTC]	2022-12-31T23:59:59.9999999Z
 
 週初め・月初・年初からの日数を求める関数。
 
-dayoOfWeek関数の戻り値はtimespan型。dayofmonth/dayofyear関数の戻り値はint型。
+dayoOfWeek関数の戻り値はtimespan型で、dayofmonth/dayofyear関数の戻り値はint型。
 
 ```
 let dt = datetime(2022-03-14 11:12:13);
@@ -169,3 +169,55 @@ dayoOfYear	73
 */
 ```
 
+### datetime_part関数
+
+dattime型の部分を整数として取得します。
+
+```
+let dt = datetime(2022-03-10 11:12:13.14);
+print
+	year = datetime_part("year", dt),
+	month = datetime_part("month", dt),
+	day = datetime_part("day", dt),
+	hour = datetime_part("hour", dt),
+	minute = datetime_part("minute", dt),
+	second = datetime_part("second", dt),
+	millisecond = datetime_part("millisecond ", dt),
+	// 四半期
+	quarter = datetime_part("quarter", dt),
+	// 年初からの日数
+	dayOfYear = datetime_part("dayOfYear", dt),
+	// 年初からの週数
+	weekOfYear = datetime_part("week_of_year", dt)
+
+/*
+year	2022
+month	3
+day	10
+hour	11
+minute	12
+second	13
+millisecond	140
+quarter	1
+dayOfYear	69
+weekOfYear	10
+*/
+```
+
+1月～3月の場合はクォーターが1になるようです。
+
+```
+print
+	q1 = datetime_part("quarter", datetime(2022-01-01)),
+	q2 = datetime_part("quarter", datetime(2022-04-01)),
+	q3 = datetime_part("quarter", datetime(2022-07-01)),
+	q4 = datetime_part("quarter", datetime(2022-10-01))
+/*
+q1	1
+q2	2
+q3	3
+q4	4
+*/
+```
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-partfunction
