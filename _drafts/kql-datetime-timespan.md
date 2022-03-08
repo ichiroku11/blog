@@ -221,3 +221,35 @@ q4	4
 ```
 
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-partfunction
+
+
+### datetime_add関数
+
+dattime型の指定した部分の値を加算する関数です。
+
+```
+let dt = datetime(2022-01-01);
+print
+	year = datetime_add("year", 1, dt),
+	quarter = datetime_add("quarter", 1, dt),
+	month = datetime_add("month", 1, dt),
+	week = datetime_add("week", 1, dt),
+	day = datetime_add("day", 1, dt),
+	hour = datetime_add("hour", 1, dt),
+	minute = datetime_add("minute", 1, dt),
+	second = datetime_add("second", 1, dt)
+
+/*
+year [UTC]	2023-01-01T00:00:00Z
+quarter [UTC]	2022-04-01T00:00:00Z
+month [UTC]	2022-02-01T00:00:00Z
+week [UTC]	2022-01-08T00:00:00Z
+day [UTC]	2022-01-02T00:00:00Z
+hour [UTC]	2022-01-01T01:00:00Z
+minute [UTC]	2022-01-01T00:01:00Z
+second [UTC]	2022-01-01T00:00:01Z
+*/
+```
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-addfunction
+
