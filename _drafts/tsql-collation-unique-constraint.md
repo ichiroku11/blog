@@ -1,13 +1,15 @@
 ---
 layout: post
-title: "SQL Server - nvarcharに対するUNIQUE制約は大文字小文字を区別しない"
+title: "SQL Server - Japanese_CI_ASの照合順序ではnvarcharに対するUNIQUE制約も大文字小文字を区別しない"
 date: 
 tags: sql-server t-sql
 ---
 
-nvarchar型のカラムにUNIQUE制約を設定した場合、大文字小文字の違いはどうなるんだっけとふと気になったので確認。
+照合順序`Japanese_CI_AS`での話です。
 
-結果としては大文字小文字の違いは区別しないで重複と判断されます。例えば、値が"abc"というレコードがあれば、"ABC"というレコードは追加できないです。
+nvarchar型のカラムにUNIQUE制約を設定した場合、大文字小文字の違いは区別しないで重複と判断されるよねという確認。
+
+例えば、値が"abc"というレコードがあれば、"ABC"というレコードは追加できないということです。
 
 以下確認。
 
@@ -42,7 +44,7 @@ output inserted.*
 values(2, N'abc');
 ```
 
-おまけでwhere句でも大文字小文字を区別しない。
+おまけでwhere句でも大文字小文字を区別しないことを確認。
 
 ```sql
 select *
