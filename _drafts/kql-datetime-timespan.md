@@ -253,3 +253,39 @@ second [UTC]	2022-01-01T00:00:01Z
 
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-addfunction
 
+
+### datetime_diff関数
+
+datetime型の差を指定した単位で求めます。
+
+```
+let dt1 = datetime(2023-01-01);
+let dt2 = datetime(2022-01-01);
+print
+	year = datetime_diff("year", dt1, dt2),
+	quater = datetime_diff("quarter", dt1, dt2),
+	month = datetime_diff("month", dt1, dt2),
+	week = datetime_diff("week", dt1, dt2),
+	day = datetime_diff("day", dt1, dt2)
+/*
+year	1
+quater	4
+month	12
+week	53
+day 365
+*/
+
+let dt1 = datetime(2022-01-01 02:00:00);
+let dt2 = datetime(2022-01-01 01:00:00);
+print
+	hour = datetime_diff("hour", dt1, dt2),
+	minute = datetime_diff("minute", dt1, dt2),
+	second = datetime_diff("second", dt1, dt2)
+/*
+hour	1
+minute	60
+second	3600
+*/
+```
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-difffunction
