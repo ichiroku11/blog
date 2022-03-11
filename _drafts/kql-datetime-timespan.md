@@ -16,7 +16,7 @@ KQLにおける日時のdatetime型と時間間隔のtimespan型、それらに�
 - datetime_part関数
 - datetime_add関数
 - datetime_diff関数
-- ago/now関数
+- now/ago関数
 
 ### timespanのリテラル
 
@@ -289,3 +289,22 @@ second	3600
 ```
 
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-difffunction
+
+
+### now/ago関数
+
+それぞれ現在時刻、現在時刻から減算した日時を取得します。同じステートメント内で複数呼び出した場合は同じ値になるとのことです。
+
+```
+print
+	// 今
+	now(),
+	// 1時間前
+	now(-1h),
+	// 1時間前
+	ago(1h)
+```
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/nowfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/agofunction
+
