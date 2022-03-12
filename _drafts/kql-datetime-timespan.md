@@ -293,7 +293,7 @@ second	3600
 
 ### now/ago関数
 
-それぞれ現在時刻、現在時刻から減算した日時を取得します。同じステートメント内で複数呼び出した場合は同じ値になるとのことです。
+now関数は現在日時、ago関数は現在日時から減算した日時を取得します。同じステートメント内で複数呼び出した場合は同じ値になるとのことです。
 
 ```
 print
@@ -303,6 +303,7 @@ print
 	now(-1h),
 	// 1時間前
 	ago(1h)
+// 結果は省略
 ```
 
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/nowfunction
