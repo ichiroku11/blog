@@ -90,7 +90,7 @@ print_2 [UTC]	2022-02-22T00:00:00Z
 - <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/binfunction>
 
 
-### startofday/startofmonth/startofweek/startofyear関数
+### startofday/startofweek/startofmonth/startofyear関数
 
 日・週・月・年の始まりの日を求める関数。
 
@@ -121,7 +121,7 @@ startOfYear [UTC]	2022-01-01T00:00:00Z
 - <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofyearfunction>
 
 
-### endofday/endofmonth/endofweek/endofyear関数
+### endofday/endofweek/endofmonth/endofyear関数
 
 日・週・月・年の終わりの日を求める関数。
 
