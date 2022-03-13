@@ -44,8 +44,8 @@ tick	00:00:00.0000007
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/scalar-data-types/timespan
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/samples?pivots=azuremonitor#date-and-time-operations
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/scalar-data-types/timespan>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/samples?pivots=azuremonitor#date-and-time-operations>
 
 
 ### datetime/timespanの演算
@@ -65,7 +65,7 @@ print_1 [UTC]	2022-01-13T00:00:00Z
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-timespan-arithmetic
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-timespan-arithmetic>
 
 
 ### bin関数
@@ -87,7 +87,7 @@ print_2 [UTC]	2022-02-22T00:00:00Z
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/binfunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/binfunction>
 
 
 ### startofday/startofmonth/startofweek/startofyear関数
@@ -115,10 +115,10 @@ startOfYear [UTC]	2022-01-01T00:00:00Z
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofdayfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofmonthfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofweekfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofyearfunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofdayfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofmonthfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofweekfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofyearfunction>
 
 
 ### endofday/endofmonth/endofweek/endofyear関数
@@ -146,10 +146,10 @@ endOfYear [UTC]	2022-12-31T23:59:59.9999999Z
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofdayfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofmonthfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofweekfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofyearfunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofdayfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofmonthfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofweekfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofyearfunction>
 
 
 ### dayofweek/dayofmonth/dayofyear関数
@@ -177,9 +177,9 @@ dayoOfYear	73
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofweekfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofmonthfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofyearfunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofweekfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofmonthfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofyearfunction>
 
 
 ### datetime_part関数
@@ -233,7 +233,7 @@ q4	4
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-partfunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-partfunction>
 
 
 ### datetime_add関数
@@ -264,7 +264,7 @@ second [UTC]	2022-01-01T00:00:01Z
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-addfunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-addfunction>
 
 
 ### datetime_diff関数
@@ -301,7 +301,7 @@ second	3600
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-difffunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-difffunction>
 
 
 ### now/ago関数
@@ -319,8 +319,8 @@ print
 // 結果は省略
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/nowfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/agofunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/nowfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/agofunction>
 
 
 ### getyear/getmonth関数
@@ -339,5 +339,5 @@ month	3
 */
 ```
 
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/getyearfunction
-- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/getmonthfunction
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/getyearfunction>
+- <https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/getmonthfunction>
