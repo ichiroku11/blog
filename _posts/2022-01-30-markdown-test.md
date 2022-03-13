@@ -41,3 +41,5 @@ print 'Hello'
 ```
 
 [View on GitHub](https://github.com/ichiroku11/blog)
+
+<https://github.com/ichiroku11/blog>
