@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "KQLのdatetime型/timespan型と関連する関数のまとめ"
-date: 
+date: 2022-03-13
 tags: azure-monitor kql
 ---
 
