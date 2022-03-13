@@ -17,6 +17,8 @@ KQLにおける日時のdatetime型と時間間隔のtimespan型、それらに�
 - datetime_add関数
 - datetime_diff関数
 - now/ago関数
+- getyear/getmonth関数
+
 
 ### timespanのリテラル
 
@@ -42,10 +44,9 @@ tick	00:00:00.0000007
 */
 ```
 
-// todo
-
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/scalar-data-types/timespan
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/samples?pivots=azuremonitor#date-and-time-operations
+
 
 ### datetime/timespanの演算
 
@@ -64,13 +65,12 @@ print_1 [UTC]	2022-01-13T00:00:00Z
 */
 ```
 
-// todo
-
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/datetime-timespan-arithmetic
+
 
 ### bin関数
 
-日付以外にも利用できますが、値を切り捨てする関数。
+値を切り捨てする関数です。日付以外にも利用できますがdatetime型で使うことも多いんじゃないかなと。
 
 ```
 let dt = datetime(2022-02-22 11:12:13);
@@ -86,8 +86,6 @@ print_1 [UTC]	2022-02-22T11:00:00Z
 print_2 [UTC]	2022-02-22T00:00:00Z
 */
 ```
-
-// todo
 
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/binfunction
 
@@ -117,6 +115,11 @@ startOfYear [UTC]	2022-01-01T00:00:00Z
 */
 ```
 
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofdayfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofmonthfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofweekfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/startofyearfunction
+
 
 ### endofday/endofmonth/endofweek/endofyear関数
 
@@ -143,6 +146,11 @@ endOfYear [UTC]	2022-12-31T23:59:59.9999999Z
 */
 ```
 
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofdayfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofmonthfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofweekfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/endofyearfunction
+
 
 ### dayofweek/dayofmonth/dayofyear関数
 
@@ -168,6 +176,11 @@ dayoOfMonth	14
 dayoOfYear	73
 */
 ```
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofweekfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofmonthfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/dayofyearfunction
+
 
 ### datetime_part関数
 
@@ -309,3 +322,22 @@ print
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/nowfunction
 - https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/agofunction
 
+
+### getyear/getmonth関数
+
+日付から年や月を取得します。datetime_part関数のショートハンド的な感じですかね。
+
+```
+let dt = datetime(2022-03-10);
+print
+	year = getyear(dt),
+	month = getmonth(dt)
+
+/*
+year	2022
+month	3
+*/
+```
+
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/getyearfunction
+- https://docs.microsoft.com/ja-jp/azure/data-explorer/kusto/query/getmonthfunction
