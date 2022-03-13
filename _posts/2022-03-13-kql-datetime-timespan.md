@@ -7,17 +7,17 @@ tags: azure-monitor kql
 
 KQLにおける日時のdatetime型と時間間隔のtimespan型、それらに関連する関数のまとめです。
 
-- timespanのリテラル
-- datetime/timespanの演算
-- bin関数
-- startofday/startofweek/startofmonth/startofyear関数
-- endofday/endofweek/endofmonth/endofyear関数
-- dayofweek/dayofmonth/dayofyear関数
-- datetime_part関数
-- datetime_add関数
-- datetime_diff関数
-- now/ago関数
-- getyear/getmonth関数
+- [timespanのリテラル](#timespanのリテラル)
+- [datetime/timespanの演算](#datetimetimespanの演算)
+- [bin関数](#)
+- [startofday/startofweek/startofmonth/startofyear関数](#startofday/startofweek/startofmonth/startofyear関数)
+- [endofday/endofweek/endofmonth/endofyear関数](#endofday/endofweek/endofmonth/endofyear関数)
+- [dayofweek/dayofmonth/dayofyear関数](#dayofweek/dayofmonth/dayofyear関数)
+- [datetime_part関数](#datetime_part関数)
+- [datetime_add関数](#datetime_add関数)
+- [datetime_diff関数](#datetime_diff関数)
+- [now/ago関数](#now/ago関数)
+- [getyear/getmonth関数](#getyear/getmonth関数)
 
 
 ### timespanのリテラル
