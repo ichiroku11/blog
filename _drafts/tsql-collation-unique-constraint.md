@@ -5,13 +5,10 @@ date:
 tags: sql-server t-sql
 ---
 
-照合順序`Japanese_CI_AS`での話です。
+照合順序`Japanese_CI_AS`での話。
 
-nvarchar型のカラムにUNIQUE制約を設定した場合、大文字小文字の違いは区別しないで重複と判断されるよねという確認。
-
-例えば、値が"abc"というレコードがあれば、"ABC"というレコードは追加できないということです。
-
-以下確認。
+nvarchar型のカラムにUNIQUE制約を設定した場合、大文字小文字の違いは区別しないで重複と判断されるよねという確認です。
+例えば、値が"abc"というレコードがあれば、"ABC"というレコードは追加できないということを確認しました。
 
 ```sql
 -- 初期データを用意
@@ -32,19 +29,23 @@ Id  Value
 */
 
 -- "ABC"をinsertしてみる
--- 制約 'UQ_Sample_Value' の UNIQUE KEY 違反。オブジェクト 'dbo.Sample' には重複するキーを挿入できません。重複するキーの値は (ABC) です。
+-- 制約 'UQ_Sample_Value' の UNIQUE KEY 違反。
+-- オブジェクト 'dbo.Sample' には重複するキーを挿入できません。
+-- 重複するキーの値は (ABC) です。
 insert into dbo.Sample(Id, Value)
 output inserted.*
 values(2, N'ABC');
 
 -- "abc"をinsertしてみる
--- 制約 'UQ_Sample_Value' の UNIQUE KEY 違反。オブジェクト 'dbo.Sample' には重複するキーを挿入できません。重複するキーの値は (abc) です。
+-- 制約 'UQ_Sample_Value' の UNIQUE KEY 違反。
+-- オブジェクト 'dbo.Sample' には重複するキーを挿入できません。
+-- 重複するキーの値は (abc) です。
 insert into dbo.Sample(Id, Value)
 output inserted.*
 values(2, N'abc');
 ```
 
-おまけでwhere句でも大文字小文字を区別しないことを確認。
+おまけ。where句でも大文字小文字を区別しないことを確認。
 
 ```sql
 select *
@@ -63,3 +64,6 @@ Id  Value
 1   abc
 */
 ```
+
+### 参考
+- [照合順序と Unicode のサポート - SQL Server &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/sql/relational-databases/collations/collation-and-unicode-support?view=sql-server-ver15)
