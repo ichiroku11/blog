@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "SQL Server - Japanese_CI_ASの照合順序ではnvarcharに対するUNIQUE制約も大文字小文字を区別しない"
-date: 
+date: 2022-03-19
 tags: sql-server t-sql
 ---
 
