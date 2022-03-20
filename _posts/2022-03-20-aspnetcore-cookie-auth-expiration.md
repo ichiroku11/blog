@@ -9,15 +9,19 @@ ASP.NET Coreでのクッキー認証の有効期限は`CookieAuthenticationOptio
 
 [CookieAuthenticationOptions.ExpireTimeSpan プロパティ (Microsoft.AspNetCore.Authentication.Cookies) &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.expiretimespan)
 
-デフォルト値は14日のようです。Docsに記載がなさそうですが、CookieAuthenticationOptionsのコンストラクターで設定している値がそれかなと。
+### デフォルト値
 
-https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/Cookies/src/CookieAuthenticationOptions.cs#L30
+デフォルト値は14日のようです。Docsに記載がなさそうですが、CookieAuthenticationOptionsのコンストラクターで設定している値がそれかなと。
 
 ```csharp
 ExpireTimeSpan = TimeSpan.FromDays(14);
 ```
 
-変更する方法は次のような感じで。
+[aspnetcore/CookieAuthenticationOptions.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/Cookies/src/CookieAuthenticationOptions.cs#L30)
+
+### 変更方法
+
+変更するには次のような感じで。
 
 ```csharp
 services
