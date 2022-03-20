@@ -1,20 +1,17 @@
 ---
 layout: post
 title: "ASP.NET Coreの認証クッキーの有効期限のデフォルト値と変更方法"
-date: 
+date: 2022-03-20
 tags: aspnetcore
 ---
 
-ASP.NET Coreでのクッキー認証の有効期限のプロパティは`CookieAuthenticationOptions.ExpireTimeSpan`です。
+ASP.NET Coreでのクッキー認証の有効期限は`CookieAuthenticationOptions.ExpireTimeSpan`で設定します。
 
-// todo:
-https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.expiretimespan
+[CookieAuthenticationOptions.ExpireTimeSpan プロパティ (Microsoft.AspNetCore.Authentication.Cookies) &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.expiretimespan)
 
-デフォルト値は14日のようです。
-Docsには記載がないようですが、CookieAuthenticationOptionsのコンストラクターで設定している値がそれかなと。
+デフォルト値は14日のようです。Docsに記載がなさそうですが、CookieAuthenticationOptionsのコンストラクターで設定している値がそれかなと。
 
-// todo:
-https://github.com/dotnet/aspnetcore/blob/a708a5adf17510ecf297368b59ba5e5d20a20999/src/Security/Authentication/Cookies/src/CookieAuthenticationOptions.cs#L30
+https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/Cookies/src/CookieAuthenticationOptions.cs#L30
 
 ```csharp
 ExpireTimeSpan = TimeSpan.FromDays(14);
@@ -39,12 +36,10 @@ services
 Expiration is currently ignored. Use ExpireTimeSpan to control lifetime of cookie authentication.
 ```
 
-// todo:
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.cookie?view=aspnetcore-6.0
+[CookieAuthenticationOptions.Cookie Property (Microsoft.AspNetCore.Authentication.Cookies) &#124; Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.cookie?view=aspnetcore-6.0)
 
-ASP.NET Core 6.0で確認。
+ASP.NET Core 6.0で確認しました。
 
 #### 参考
-// todo:
-- https://docs.microsoft.com/ja-jp/aspnet/core/security/authentication/cookie?view=aspnetcore-6.0
+- [ASP.NET Core Identity を使用せずに cookie 認証を使用する &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/aspnet/core/security/authentication/cookie?view=aspnetcore-6.0)
 
