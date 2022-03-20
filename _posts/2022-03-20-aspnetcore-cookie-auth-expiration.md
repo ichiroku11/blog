@@ -44,6 +44,6 @@ Expiration is currently ignored. Use ExpireTimeSpan to control lifetime of cooki
 
 ASP.NET Core 6.0で確認しました。
 
-#### 参考
+### 参考
 - [ASP.NET Core Identity を使用せずに cookie 認証を使用する &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/aspnet/core/security/authentication/cookie?view=aspnetcore-6.0)
 
