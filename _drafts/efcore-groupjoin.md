@@ -5,8 +5,9 @@ date:
 tags: efcore t-sql
 ---
 
-EF Coreで外部結合（left outer join）をするサンプルです。
+EF CoreでGroupJoinメソッドを使って外部結合するサンプルです。
 
+### サンプルのテーブルとデータ
 
 ```sql
 use Test;
@@ -49,9 +50,8 @@ Id	Value
 1	A
 4	D
 */
-```
 
-```sql
+-- GroupJoinを使って実行したいクエリ
 select *
 from dbo.[Outer]
 	left outer join dbo.[Inner]
@@ -65,6 +65,8 @@ Id	Value	Id	Value
 */
 ```
 
+### GroupJoinメソッドを使って外部結合する
+
 ```csharp
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -72,7 +74,7 @@ using Microsoft.Extensions.Logging;
 
 using var context = new AppDbContext();
 
-// GroupJoinを使ってleft outer joinを行う
+// GroupJoinを使って外部結合する
 var samples = await context.Outers
 	.GroupJoin(
 		context.Inners,
@@ -97,6 +99,7 @@ Console.WriteLine($"{nameof(Outer.Id)}\t{nameof(Outer.Value)}\t{nameof(Inner.Id)
 foreach (var entry in samples) {
 	Console.WriteLine($"{entry.Outer.Id}\t{entry.Outer.Value}\t{entry.Inner?.Id}\t{entry.Inner?.Value}");
 }
+// 出力結果
 /*
 Id	Value	Id	Value
 1	a	1	A
