@@ -1,13 +1,15 @@
 ---
 layout: post
 title: "EF Core - GroupJoinメソッドで外部結合（leff outer join）する"
-date: 
+date: 2022-03-29
 tags: efcore t-sql
 ---
 
 EF CoreでGroupJoinメソッドを使って外部結合するサンプルです。
 
 ### サンプルのテーブルとデータ
+
+取得したいサンプルデータです。OuterとInnerを外部結合したいとします。
 
 ```sql
 use Test;
@@ -66,6 +68,8 @@ Id	Value	Id	Value
 ```
 
 ### GroupJoinメソッドを使って外部結合する
+
+EF CoreでGroupJoinメソッドを使ってデータを取得してみます。
 
 ```csharp
 using Microsoft.Data.SqlClient;
