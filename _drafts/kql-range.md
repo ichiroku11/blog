@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "KQLのrange関数"
+title: "KQLのrange演算子"
 date: 
 tags: azure-monitor kql
 ---
 
-range関数
+range演算子
 
 
 ```
