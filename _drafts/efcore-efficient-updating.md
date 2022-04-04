@@ -5,9 +5,9 @@ date:
 tags: efcore t-sql
 ---
 
-https://docs.microsoft.com/ja-jp/ef/core/performance/efficient-updating
+試していて複数データを追加するときにINSERT文が1つにまとめられる場合があったので確認しました。
 
-こちらの記事を見つけたので、複数データを登録するときにINSERT文が1つにまとめられる場合があることを確認してみました。
+SaveChangesAsyncを呼び出したときに追加されるデータが3つだとINSERT文が3回実行され、追加されるデータが4つだと1回のINSERT文が実行されました。ラウンドトリップの回数を少なく抑えるようになっているのかも？
 
 ```csharp
 using Microsoft.Data.SqlClient;
@@ -98,4 +98,10 @@ public class AppDbContext : DbContext {
 	}
 }
 ```
+
+.NET 6、EF Core 6.0、SQL Serverで確認。
+
+### 参考
+
+- [効率的な更新 - EF Core &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/ef/core/performance/efficient-updating)
 
