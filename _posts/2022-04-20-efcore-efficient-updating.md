@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "EF Core - "
-date: 
+title: "EF Core - INSERT文が1つにまとめられる場合があることを確認する"
+date: 2022-04-20
 tags: efcore t-sql
 ---
 
