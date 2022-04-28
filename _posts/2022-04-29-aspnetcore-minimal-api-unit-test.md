@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "ASP.NET Core - Minimal APIをWebApplicationFactoryでテストする"
-date: 
+date: 2022-04-29
 tags: aspnetcore
 ---
 
-ASP.NET Core 6のMinimal APIを単体テストするとき、StartupクラスがないけどWebApplicationFactoryでテストするにはどうするんだろう？と思って調べたらDocsにありました。
+ASP.NET Core 6のMinimal APIを単体テストするとき、StartupクラスがないのでWebApplicationFactoryでテストするにはどうするんだろう？と思って調べたらDocsにありました。
 
 6.0 での新しい最小ホスティング モデルに移行されたコード サンプル | Microsoft Docs
 https://docs.microsoft.com/ja-jp/aspnet/core/migration/50-to-60-samples?view=aspnetcore-6.0#aspnet-core-6-9
