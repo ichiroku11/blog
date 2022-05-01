@@ -23,8 +23,18 @@ public class SampleModel {
 }
 ```
 
-Docsには記載はなさそう（見落としているかな）ですが。
+Docsには記載がなさそうな感じです。
 
-https://docs.microsoft.com/ja-jp/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-input-tag-helper
+[ASP.NET Core のフォームのタグ ヘルパー | Microsoft Docs](https://docs.microsoft.com/ja-jp/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-input-tag-helper)
 
-// todo: GitHubのソース
+ソースを調べてみると、DefaultHtmlGenerator.GenerateHiddenメソッドでバイト配列に対して特別処理しているがそれかなと思います。
+
+```csharp
+// Special-case opaque values and arbitrary binary data.
+if (value is byte[] byteArrayValue)
+{
+	value = Convert.ToBase64String(byteArrayValue);
+}
+```
+
+[https://github.com/dotnet/aspnetcore/blob/ac39742bf152a0d2980059289822e1d3526a880a/src/Mvc/Mvc.ViewFeatures/src/DefaultHtmlGenerator.cs#L389-L393](https://github.com/dotnet/aspnetcore/blob/ac39742bf152a0d2980059289822e1d3526a880a/src/Mvc/Mvc.ViewFeatures/src/DefaultHtmlGenerator.cs#L389-L393)
