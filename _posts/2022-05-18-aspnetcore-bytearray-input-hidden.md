@@ -25,7 +25,7 @@ public class SampleModel {
 
 Docsには記載がなさそうな感じです。
 
-[ASP.NET Core のフォームのタグ ヘルパー | Microsoft Docs](https://docs.microsoft.com/ja-jp/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-input-tag-helper)
+[ASP.NET Core のフォームのタグ ヘルパー &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-input-tag-helper)
 
 ソースを調べてみると、DefaultHtmlGenerator.GenerateHiddenメソッドでバイト配列に対して特別処理しているがそれかなと思います。（デバッグ実行で確かめたわけではないです。）
 
