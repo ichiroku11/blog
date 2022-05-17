@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ASP.NET Core - タグヘルパーでtype=\"hidden\"のinput要素にバイト配列のプロパティを指定するとBase64エンコードされる"
+title: "ASP.NET Core - タグヘルパーでtype=\"hidden\"のinput要素に出力したバイト配列はBase64エンコードされる"
 date: 2022-05-18
 tags: aspnetcore
 ---
