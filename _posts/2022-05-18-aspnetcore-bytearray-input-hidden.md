@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "ASP.NET Core - タグヘルパーでtype="hidden"のinput要素に出力するとき、バイト配列はBase64エンコードされる"
-date: 
+title: "ASP.NET Core - タグヘルパーでtype="hidden"のinput要素にバイト配列のプロパティを指定するとBase64エンコードされる"
+date: 2022-05-18
 tags: aspnetcore
 ---
 
@@ -27,7 +27,7 @@ Docsには記載がなさそうな感じです。
 
 [ASP.NET Core のフォームのタグ ヘルパー | Microsoft Docs](https://docs.microsoft.com/ja-jp/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-input-tag-helper)
 
-ソースを調べてみると、DefaultHtmlGenerator.GenerateHiddenメソッドでバイト配列に対して特別処理しているがそれかなと思います。
+ソースを調べてみると、DefaultHtmlGenerator.GenerateHiddenメソッドでバイト配列に対して特別処理しているがそれかなと思います。（デバッグ実行で確かめたわけではないです。）
 
 ```csharp
 // Special-case opaque values and arbitrary binary data.
