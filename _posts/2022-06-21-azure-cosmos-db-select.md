@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure Cosmos DB - SQLクエリのSELECT句を確認する"
-date: 
+date: 2022-06-21
 tags: azure-cosmos-db
 ---
 
