@@ -14,6 +14,8 @@ SELECT句で指定したプロパティを持つJSONオブジェクトを取得�
 
 ```sql
 select 1, true
+
+-- 結果
 /*
 [
   {
@@ -31,6 +33,8 @@ select 1, true
 
 ```sql
 select 1 as x, true as y
+
+-- 結果
 /*
 [
   {
