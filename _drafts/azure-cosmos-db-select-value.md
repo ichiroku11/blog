@@ -16,9 +16,9 @@ select 1
 
 /*
 [
-	{
-		"$1": 1
-	}
+  {
+    "$1": 1
+  }
 ]
 */
 ```
@@ -30,13 +30,14 @@ select 1 as x
 
 /*
 [
-	{
-		"x": 1
-	}
+  {
+    "x": 1
+  }
 ]
 */
 ```
 
+おさらいは以上で、ここからはSELECT VALUEの話です。
 次のクエリのようにSELECT VALUEとすると、JSONオブジェクトではなく値そのものを取得できます。
 
 ```sql
@@ -44,7 +45,7 @@ select value 1
 
 /*
 [
-	1
+  1
 ]
 */
 ```
@@ -62,11 +63,11 @@ SELECT句ではオブジェクト型のプロパティも指定できます。
 select { x: 1 }
 /*
 [
-	{
-		"$1": {
-			"x": 1
-		}
-	}
+  {
+    "$1": {
+      "x": 1
+    }
+  }
 ]
 */
 ```
@@ -78,19 +79,14 @@ select value { x: 1 }
 -- select 1 as xと同じ結果になる
 /*
 [
-	{
-		"x": 1
-	}
+  {
+    "x": 1
+  }
 ]
 */
 ```
 
-次に2つのクエリは同じ結果になります。
-```sql
-select 1 as x
-select value { x: 1 }
-```
-
+この結果は`select 1 as x`と同じ結果になります。
 というよりも
 ```sql
 select 1 as x
@@ -103,4 +99,4 @@ select value { x: 1 }
 
 ### 参考
 
-- [ // todo:  ](https://docs.microsoft.com/ja-jp/azure/cosmos-db/sql/sql-query-select)
+- [Azure Cosmos DB での SELECT 句 &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/cosmos-db/sql/sql-query-select)
