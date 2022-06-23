@@ -37,7 +37,9 @@ select 1 as x
 */
 ```
 
-おさらいは以上で、ここからはSELECT VALUEの話です。
+おさらいはここまで。
+
+SELECT VALUEの本題に移ります。
 次のクエリのようにSELECT VALUEとすると、JSONオブジェクトではなく値そのものを取得できます。
 
 ```sql
@@ -57,7 +59,7 @@ select value 1 as x
 -- Syntax error, incorrect syntax near 'as'.
 ```
 
-SELECT句ではオブジェクト型のプロパティも指定できます。
+ここで、SELECT句でオブジェクト型を指定した場合を確認してみましょう。
 
 ```sql
 select { x: 1 }
@@ -71,8 +73,9 @@ select { x: 1 }
 ]
 */
 ```
+そのオブジェクトをプロパティに持つオブジェクトを取得できました。
 
-オブジェクト型に対してSELECT VALUEとして値を取得すると、次のような結果になります。
+今度は、オブジェクト型に対してSELECT VALUEとして値を取得してみましょう。オブジェクトそのものを取得できます。
 
 ```sql
 select value { x: 1 }
@@ -86,7 +89,7 @@ select value { x: 1 }
 */
 ```
 
-この結果は`select 1 as x`と同じ結果になります。
+少し混乱しそうになりますが、この結果は`select 1 as x`と同じ結果になります。
 というよりも
 ```sql
 select 1 as x
@@ -96,6 +99,7 @@ select 1 as x
 select value { x: 1 }
 ```
 
+同じ結果になるわけですね。
 
 ### 参考
 
