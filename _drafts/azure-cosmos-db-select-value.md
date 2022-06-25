@@ -1,14 +1,13 @@
 ---
 layout: post
 title: "Azure Cosmos DB - SQLクエリのSELECT VALUEを確認する"
-date: 
+date: 2022-06-25
 tags: azure-cosmos-db
 ---
 
 SELECT句にVALUEを指定した場合の結果を確認したいと思います。
 
 まずはおさらいから。SELECT句では取得するJSONオブジェクトのプロパティを指定します。
-
 次のクエリでは"$1"というプロパティを持ったJSONオブジェクトを取得しています。
 
 ```sql
@@ -75,7 +74,8 @@ select { x: 1 }
 ```
 そのオブジェクトをプロパティに持つオブジェクトを取得できました。
 
-今度は、オブジェクト型に対してSELECT VALUEとして値を取得してみましょう。オブジェクトそのものを取得できます。
+今度は、オブジェクト型に対してSELECT VALUEとして値を取得してみましょう。
+オブジェクトそのものを取得できます。
 
 ```sql
 select value { x: 1 }
@@ -90,6 +90,7 @@ select value { x: 1 }
 ```
 
 少し混乱しそうになりますが、この結果は`select 1 as x`と同じ結果になります。
+
 というよりも
 ```sql
 select 1 as x
