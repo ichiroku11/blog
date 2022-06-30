@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure Cosmos DB - SQLクエリのリテラルを確認する"
-date: 2022-0701
+date: 2022-07-01
 tags: azure-cosmos-db
 ---
 
