@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure Cosmos DB - SQLクエリのFROM INを確認する"
-date: 
+date: 2022-07-20
 tags: azure-cosmos-db
 ---
 
