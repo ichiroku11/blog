@@ -12,15 +12,16 @@ tags: azure-cosmos-db
 
 ドキュメントはこのあたりですね。
 
-https://docs.microsoft.com/ja-jp/azure/cosmos-db/sql/sql-query-object-array#Iteration
+[Azure Cosmos DB での配列とオブジェクトの操作 &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/cosmos-db/sql/sql-query-object-array#Iteration)
 
 FROM句でINキーワードを使うと配列を平坦化（フラット化）できます。Docs内では「イテレーション（反復）」といった用語が使われています。
 C#のLINQでいうSelectManay、JavaScriptのArray.flatのような機能ですね。
 
 クエリと結果を確認していきましょう。
 
-次のようなデータがあるとします。アイテムが2つ。システムによって生成されるプロパティは省略しています。
-どこかの焼き鳥屋さんの注文のようなデータをイメージしてもらえると。
+次のようなデータがあるとします。アイテムが2つ。どこかの焼き鳥屋さんの注文と注文明細のようなデータをイメージしてもらえると。
+
+システムによって生成されるプロパティは省略しています。
 
 ```json
 [
@@ -91,7 +92,7 @@ from c.details
 
 ### FROM句とINキーワードを使ったクエリ
 
-続いてfrom句にinキーワードを使ってみると。
+続いてfrom句にinキーワードを使ってみると、
 
 ##### クエリ：
 ```sql
