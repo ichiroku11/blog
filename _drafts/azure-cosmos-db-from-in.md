@@ -52,6 +52,8 @@ C#のLINQでいうSelectManay、JavaScriptのArray.flatのような機能です�
 ]
 ```
 
+### FROM句だけを使ったクエリ
+
 from句に`details`プロパティを指定して注文明細を取得してみましょう。
 
 ##### クエリ：
@@ -60,9 +62,9 @@ select *
 from c.details
 ```
 
-`details`プロパティの配列だけが抜き出されたような結果を取得できました。
+`details`プロパティの配列だけが抜き出されたような結果を取得できます。
 
-##### 結果
+##### 結果：
 ```json
 [
   [
@@ -87,14 +89,19 @@ from c.details
 ]
 ```
 
-// todo: ここから
+### FROM句とINキーワードを使ったクエリ
 
+続いてfrom句にinキーワードを使ってみると。
 
+##### クエリ：
 ```sql
 select *
 from c in c.details
 ```
 
+`details`プロパティの項目が平坦化されて結果全体が配列1つになります。
+
+##### 結果：
 ```json
 [
   {
