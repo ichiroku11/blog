@@ -57,7 +57,7 @@ protected string? GenerateUrl(string? protocol, string? host, string? virtualPat
 
 ### UrlHelperExtensions.ActionLinkメソッド
 
-ActionLink拡張メソッドでは、引数の`protocol`と`host`は省略された場合に、HTTPリクエストから取得した値を指定してActionメソッドを呼び出していることがわかります。
+ActionLink拡張メソッドでは、引数の`protocol`と`host`が省略された場合にHTTPリクエストから取得した値を指定してActionメソッドを呼び出していることがわかります。
 
 ```csharp
 public static string? ActionLink(
