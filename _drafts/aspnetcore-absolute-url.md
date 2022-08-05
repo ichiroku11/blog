@@ -1,42 +1,61 @@
 ---
 layout: post
-title: "ASP.NET Core - 実行中アプリケーションの絶対URLを生成する"
+title: "ASP.NET Core - 実行中のアプリケーションの絶対URLを生成する"
 date: 
 tags: aspnetcore
 ---
 
-UrlHelperのActionLink拡張メソッドを使うと実行中アプリケーションの絶対URLを作成できます。
+UrlHelperのActionLink拡張メソッドを使うと実行中のアプリケーションの絶対URLを作成できます。
 
 [UrlHelper.ActionLinkメソッドで絶対URLを取得する - ASP.NET Core MVC - いちろぐ](https://ichiroku11.hatenablog.jp/entry/2020/07/23/202404)
 
-ソースコード上で確認したメモです。
+ソースコード上で確認してみました。
 
-まずUrlHelperのURLを作成するGenerateUrlメソッドの抜粋です。メソッドの引数`protocol`または`host`が指定されている場合、絶対URLを構築しているようです。（elseの方）
+### UrlHelperBase.GenerateUrlメソッド
+
+まずはUrlHelperのURLを作成するGenerateUrlメソッドの抜粋です。メソッドの引数`protocol`または`host`が指定されている場合、絶対URLを構築しているようです。（elseの方）
 
 ```csharp
-if (string.IsNullOrEmpty(protocol) && string.IsNullOrEmpty(host))
+protected string? GenerateUrl(string? protocol, string? host, string? virtualPath, string? fragment)
 {
-	AppendPathAndFragment(builder, pathBase, virtualPath, fragment);
-	// We're returning a partial URL (just path + query + fragment), but we still want it to be rooted.
-	if (builder.Length == 0 || builder[0] != '/')
+	// 省略
+
+	try
 	{
-		builder.Insert(0, '/');
+		var pathBase = ActionContext.HttpContext.Request.PathBase;
+
+		if (string.IsNullOrEmpty(protocol) && string.IsNullOrEmpty(host))
+		{
+			AppendPathAndFragment(builder, pathBase, virtualPath, fragment);
+			// We're returning a partial URL (just path + query + fragment), but we still want it to be rooted.
+			if (builder.Length == 0 || builder[0] != '/')
+			{
+				builder.Insert(0, '/');
+			}
+		}
+		else
+		{
+			protocol = string.IsNullOrEmpty(protocol) ? "http" : protocol;
+			builder.Append(protocol);
+
+			builder.Append(Uri.SchemeDelimiter);
+
+			host = string.IsNullOrEmpty(host) ? ActionContext.HttpContext.Request.Host.Value : host;
+			builder.Append(host);
+			AppendPathAndFragment(builder, pathBase, virtualPath, fragment);
+		}
+
+		var path = builder.ToString();
+		return path;
 	}
-}
-else
-{
-	protocol = string.IsNullOrEmpty(protocol) ? "http" : protocol;
-	builder.Append(protocol);
 
-	builder.Append(Uri.SchemeDelimiter);
-
-	host = string.IsNullOrEmpty(host) ? ActionContext.HttpContext.Request.Host.Value : host;
-	builder.Append(host);
-	AppendPathAndFragment(builder, pathBase, virtualPath, fragment);
+	// 省略
 }
 ```
 
 [aspnetcore/UrlHelperBase.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.Core/src/Routing/UrlHelperBase.cs#L116-L165)
+
+### UrlHelperExtensions.ActionLinkメソッド
 
 ActionLink拡張メソッドでは、引数の`protocol`と`host`は省略された場合に、HTTPリクエストから取得した値を指定してActionメソッドを呼び出していることがわかります。
 
