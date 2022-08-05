@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ASP.NET Core - 実行中のアプリケーションの絶対URLを生成する"
-date: 
+date: 2022-08-05
 tags: aspnetcore
 ---
 
