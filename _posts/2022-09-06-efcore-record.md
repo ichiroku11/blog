@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "EF Core - record型とエンティティ"
-date: 
+date: 2022-09-06
 tags: efcore csharp
 ---
 
