@@ -129,7 +129,7 @@ where exists(
     where d.menu = "しろ")
 ```
 
-DocsによるとEXISTS式よりJOINの方がコストが高いとのことです。JOINがコストが高そうなのはなんとなく想像できます。ARRAY_CONTAINS関数とEXISTS式の違いはそこまでないんですかね。どうなんでしょう。
+DocsによるとEXISTS式よりJOINの方がコストが高いとのことです。JOINのコストが高そうなのはなんとなく想像できます。ARRAY_CONTAINS関数とEXISTS式の違いはそこまでないんですかね。どうなんでしょう。
 
 ### 参考
 
