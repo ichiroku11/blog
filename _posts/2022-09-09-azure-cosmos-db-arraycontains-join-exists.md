@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure Cosmos DB - SQLクエリのARRAY_CONTAINS関数を確認する"
-date: 
+date: 2022-09-09
 tags: azure-cosmos-db
 ---
 
@@ -129,7 +129,7 @@ where exists(
     where d.menu = "しろ")
 ```
 
-DocsによるとEXISTS式よりJOINの方がコストが高いとのことです。JOINはコストが高そうなのは想像できます。ARRAY_CONTAINS関数とEXISTS式の違いはそこまでないんですかね。どうなんでしょう。
+DocsによるとEXISTS式よりJOINの方がコストが高いとのことです。JOINがコストが高そうなのはなんとなく想像できます。ARRAY_CONTAINS関数とEXISTS式の違いはそこまでないんですかね。どうなんでしょう。
 
 ### 参考
 
