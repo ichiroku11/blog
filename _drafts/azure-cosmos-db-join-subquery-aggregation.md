@@ -9,7 +9,7 @@ tags: azure-cosmos-db
 
 いつものようにどこかの焼き鳥屋さんの注文と注文明細のようなサンプルデータを用意しました。システムによって生成されるプロパティは省略しています。
 
-この注文データに対して`id`別の注文合計金額（`details.price * details.quantity`の合計）をクエリで取得してみたいと思います。
+この注文データに対して`id`別の注文合計金額（`details.price * details.quantity`のsum）を取得してみたいと思います。
 
 ```json
 [
@@ -43,8 +43,48 @@ tags: azure-cosmos-db
 
 ### 結合（JOIN）を使ったクエリで集計する
 
-JOINを使って取得するクエリは次のようになります。
-// todo: 
+集計する前にINキーワードを使ったJOINの結果を確認します。
+結果はクロス積になるので`details`が平坦化されて、`details`の項目1つ1つに`id`が付与された結果になっていることがわかります。
+
+##### クエリ：
+
+```sql
+select
+  o.id,
+  --o.details,
+  d.menu,
+  d.price,
+  d.quantity
+from o
+  join d in o.details
+```
+
+##### 結果：
+
+```json
+[
+  {
+    "id": "1",
+    "menu": "純けい",
+    "price": 360,
+    "quantity": 3
+  },
+  {
+    "id": "1",
+    "menu": "しろ",
+    "price": 330,
+    "quantity": 2
+  },
+  {
+    "id": "2",
+    "menu": "若皮",
+    "price": 330,
+    "quantity": 2
+  }
+]
+```
+
+このクエリにグルーピングして集計関数を使えば、求める合計を取得できます。
 
 ##### クエリ：
 
@@ -73,7 +113,8 @@ group by o.id
 ]
 ```
 
-// todo: 並び替えしようと思ったら、select from nestにする必要がある？
+`id`順で並び替えをしようと思ったら、次のようにサブクエリにする必要があるのかも？上記クエリに`order by`句を足したらエラーになりました。
+
 ```sql
 select *
 from (
