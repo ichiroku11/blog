@@ -81,7 +81,7 @@ where array_contains(c.details, {menu: "しろ"}, true)
 想定した結果も取得できました。
 
 ##### 結果：
-```
+```json
 [
   {
     "id": "1",
