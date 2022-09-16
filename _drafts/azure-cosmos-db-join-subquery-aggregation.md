@@ -129,7 +129,7 @@ from (
 
 ### サブクエリを使って集計する
 
-
+サブクエリを使って合計を集計するクエリです。このクエリでも同じ結果を取得できました。
 
 ##### クエリ：
 ```sql
@@ -155,7 +155,8 @@ order by o.id
 ]
 ```
 
-
 ### 参考
 
-https://docs.microsoft.com/ja-jp/azure/cosmos-db/sql/sql-query-join
+- [Azure Cosmos DB の SQL JOIN クエリ &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/cosmos-db/sql/sql-query-join)
+- [Azure Cosmos DB の SQL サブクエリ &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/cosmos-db/sql/sql-query-subquery)
+
