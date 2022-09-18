@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Azure Cosmos DB - SQLクエリの結合とサブクエリを使って集計する"
+title: "Azure Cosmos DB - SQLクエリで結合を使った集計とサブクエリを使った集計を試す"
 date: 2022-09-19
 tags: azure-cosmos-db
 ---
