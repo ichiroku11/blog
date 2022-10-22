@@ -72,3 +72,7 @@ join y in (select value ["a", "b"])
   }
 ]
 ```
+
+### 参考
+
+- [Azure Cosmos DB の SQL JOIN クエリ &#124; Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/cosmos-db/sql/sql-query-join)
