@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure Cosmos DB - 結合がクロス積になることを確認する"
-date: 
+date: 2022-10-23
 tags: azure-cosmos-db
 ---
 
