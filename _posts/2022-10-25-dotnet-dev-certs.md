@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ASP.NET Core開発時の自己証明書を作り直す"
-date: 
+date: 2022-10-25
 tags: dotnet aspnetcore cert
 ---
 
