@@ -23,7 +23,7 @@ dotnet dev-certs https --clean
 dotnet dev-certs https --trust
 ```
 
-カレントユーザーの個人の証明書には、`ASP.NET Core HTTPS development certificate`というフレンドリ名の証明書が生成されます。
+カレントユーザーの個人の証明書に、`ASP.NET Core HTTPS development certificate`というフレンドリ名の証明書が生成されます。
 
 
 ### 参考
