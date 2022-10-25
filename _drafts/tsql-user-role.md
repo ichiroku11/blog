@@ -15,6 +15,7 @@ from sys.database_principals as dp1
     inner join sys.database_principals as dp2
         on drm.role_principal_id = dp2.principal_id
 where
+    -- ユーザー"dbo"のロールを確認する
     dp1.name = 'dbo'
 ```
 
