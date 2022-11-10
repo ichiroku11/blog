@@ -31,4 +31,35 @@ GroupId     Value
 */
 ```
 
-`GroupId`ごとに
+```sql
+-- GroupId = 1のレコードが2未満であれば追加する
+-- => 追加できない
+insert into dbo.Sample(GroupId, Value)
+output inserted.*
+select 1, N'x'
+from dbo.Sample
+where GroupId = 1
+group by GroupId
+having count(*) < 2;
+/*
+GroupId     Value
+----------- -----
+*/
+```
+
+```sql
+-- GroupId = 2のレコードが2未満であれば追加する
+-- => 追加できる
+insert into dbo.Sample(GroupId, Value)
+output inserted.*
+select 2, N'x'
+from dbo.Sample
+where GroupId = 2
+group by GroupId
+having count(*) < 2;
+/*
+GroupId     Value
+----------- -----
+2           x
+*/
+```
