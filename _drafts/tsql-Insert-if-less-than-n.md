@@ -31,8 +31,13 @@ GroupId     Value
 */
 ```
 
+このテーブルに対して、同じ`GroupId`のレコード数が2未満であれば挿入できるINSERT文は次のようになります。
+
+まず`GroupId = 1`に対してクエリを実行してみましょう。
+`GroupId = 1`のレコードは2件登録されているので、新たにレコードは追加されません。
+
 ```sql
--- GroupId = 1のレコードが2未満であれば追加する
+-- GroupId = 1のレコード数が2未満であれば追加する
 -- => 追加できない
 insert into dbo.Sample(GroupId, Value)
 output inserted.*
@@ -47,8 +52,11 @@ GroupId     Value
 */
 ```
 
+次に`GroupId = 2`に対してクエリを実行してみましょう。
+`GroupId = 2`のレコードは1件だけ登録されているので、レコードが追加されます。
+
 ```sql
--- GroupId = 2のレコードが2未満であれば追加する
+-- GroupId = 2のレコード数が2未満であれば追加する
 -- => 追加できる
 insert into dbo.Sample(GroupId, Value)
 output inserted.*
