@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "T-SQL - n個未満ならINSERTする"
-date: 
+date: 2022-11-16
 tags: t-sql
 ---
 
