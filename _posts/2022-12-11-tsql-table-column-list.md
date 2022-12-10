@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "T-SQL - テーブル・カラムの一覧を取得するクエリ"
-date: 
+date: 2022-12-11
 tags: t-sql
 ---
 
