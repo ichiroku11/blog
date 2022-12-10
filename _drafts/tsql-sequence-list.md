@@ -17,3 +17,7 @@ order by
     [schema],
     [sequence];
 ```
+
+### 参考
+- [sys.schemas (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/relational-databases/system-catalog-views/schemas-catalog-views-sys-schemas)
+- [sys.sequences (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql)

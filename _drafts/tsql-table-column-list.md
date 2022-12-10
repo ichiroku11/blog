@@ -21,3 +21,8 @@ order by
     [table],
     [column];
 ```
+
+### 参考
+- [sys.schemas (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/relational-databases/system-catalog-views/schemas-catalog-views-sys-schemas)
+- [sys.tables (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/relational-databases/system-catalog-views/sys-tables-transact-sql)
+- [sys.columns (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/relational-databases/system-catalog-views/sys-columns-transact-sql)
