@@ -1,12 +1,16 @@
 ---
 layout: post
-title: "T-SQL - count(*)とgroup byの動きを確認する"
+title: "T-SQL - COUNT(*)とGROUP BYの動きを確認する"
 date: 
 tags: t-sql
 ---
 
-当たり前だけどgroup byするとレコードが消えることの確認
+行数を取得するCOUNT(*)で少しハマったのでメモ。
 
+WHERE句で存在しない行を条件にしてCOUNT(*)すると、0件として取得できます。
+その動きを想定してうっかりGROUP BYでグルーピングをしつつCOUNT(*)しちゃうと、対象のレコードが存在しないので0件として取得できない。当然ですね。でもハマってしまいました。
+
+ということでサンプルです。
 
 ```sql
 -- サンプルデータ
@@ -34,21 +38,24 @@ GroupId     Value
 ```sql
 declare @groupId int = 3;
 
--- グルーピングしない
+-- グルーピングしなければOK
 select count(*)
 from dbo.Sample
 where GroupId = @groupId
 /*
-// todo: 結果
+Count
+-----
+0
 */
 
--- group byでグルーピンする
+-- うっかりグルーピングしちゃうとダメ
 select GroupId, count(*)
 from dbo.Sample
 where GroupId = @groupId
 group by GroupId;
 /*
-// todo: 結果
+GroupId     Count
+----------- -----
 */
 ```
 
