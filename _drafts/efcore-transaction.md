@@ -5,7 +5,6 @@ date:
 tags: efcore
 ---
 
-
 EF Coreでリトライ処理を指定した場合、トランザクションを使っている部分でInvalidOperationExceptionが発生します。
 
 ```
