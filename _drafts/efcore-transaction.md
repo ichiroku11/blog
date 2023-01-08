@@ -18,4 +18,4 @@ InvalidOperationException: 構成された実行戦略 'SqlServerRetryingExecuti
 
 コード上ではこのあたりかなと。
 
-[efcore/ExecutionStrategy.cs at main · dotnet/efcore · GitHub](https://github.com/dotnet/efcore/blob/main/src/EFCore/Storage/ExecutionStrategy.cs#L385)
+[efcore/ExecutionStrategy.cs at main · dotnet/efcore · GitHub](https://github.com/dotnet/efcore/blob/main/src/EFCore/Storage/ExecutionStrategy.cs#L385-L406)
