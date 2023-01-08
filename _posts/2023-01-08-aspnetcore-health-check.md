@@ -31,9 +31,10 @@ private static HealthStatus CalculateAggregateStatus(IEnumerable<HealthReportEnt
     }
 
     return currentValue;
+}
 ```
 
-[https://github.com/dotnet/aspnetcore/blob/main/src/HealthChecks/Abstractions/src/HealthReport.cs#L60-L79](https://github.com/dotnet/aspnetcore/blob/main/src/HealthChecks/Abstractions/src/HealthReport.cs#L60-L79)
+[aspnetcore/HealthReport.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/HealthChecks/Abstractions/src/HealthReport.cs#L60-L80)
 
 ### 参考
 - [ASP.NET Core の正常性チェック &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-7.0)
