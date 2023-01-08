@@ -8,7 +8,7 @@ tags: aspnetcore
 ASP.NET Coreのヘルスチェック（正常性チェック）では、複数のヘルスチェックを行った場合、その結果の中で最も悪いステータスが結果として返されます。
 例えばヘルスチェックが2つあり、一方がHealthyでもう一方がUnhealthyの場合、結果としてはUnhealthyになります。
 
-この処理をどのあたりのコードでやってるのかなと調べてみると、HealthReport.CalculateAggregateStatusで求めていました。引用します。
+この処理をどのあたりのコードでやってるのかなと調べてみると、`HealthReport.CalculateAggregateStatus`で求めていました。引用します。
 
 ```csharp
 private static HealthStatus CalculateAggregateStatus(IEnumerable<HealthReportEntry> entries)
