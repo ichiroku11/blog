@@ -9,3 +9,7 @@ minima:
   # skinの対応が3.0からでGitHub Pagesのminimaのバージョンが2.5.1だから？
   # https://pages.github.com/versions/
   # skin: dark
+
+plugins:
+  # https://github.com/jekyll/jekyll-sitemap
+  - jekyll-sitemap
