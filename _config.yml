@@ -10,8 +10,6 @@ minima:
   # https://pages.github.com/versions/
   # skin: dark
 
-paginate: 10
-
 plugins:
   # https://github.com/jekyll/jekyll-sitemap
   - jekyll-sitemap
