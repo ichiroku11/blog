@@ -1,14 +1,12 @@
-theme: minima
+#theme: minima
+remote_theme: jekyll/minima
 timezone: Asia/Tokyo
 title: "いちろぐ"
 
 # https://github.com/jekyll/minima
 minima:
   date_format: "%Y-%m-%d"
-  # darkにならない？
-  # skinの対応が3.0からでGitHub Pagesのminimaのバージョンが2.5.1だから？
-  # https://pages.github.com/versions/
-  # skin: dark
+  skin: dark
 
 plugins:
   # https://github.com/jekyll/jekyll-sitemap
