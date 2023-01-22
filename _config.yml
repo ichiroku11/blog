@@ -1,7 +1,7 @@
-theme: minima
-#remote_theme: jekyll/minima
+#theme: minima
+remote_theme: jekyll/minima
 timezone: Asia/Tokyo
-title: "いちろぐ"
+title: いちろぐ
 
 # https://github.com/jekyll/minima
 minima:
