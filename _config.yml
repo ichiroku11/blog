@@ -6,6 +6,9 @@ title: いちろぐ
 minima:
   date_format: "%Y-%m-%d"
   skin: dark
+  social_links:
+    - { platform: github, user_url: "https://github.com/ichiroku11" }
+    - { platform: twitter, user_url: "https://twitter.com/ichiroku11" }
 
 #paginate: 10
 
