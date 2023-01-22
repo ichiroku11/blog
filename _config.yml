@@ -10,6 +10,9 @@ minima:
 #paginate: 10
 
 plugins:
+  # feed.xml
+  # https://github.com/jekyll/jekyll-feed
   - jekyll-feed
+  # sitemap.xml
   # https://github.com/jekyll/jekyll-sitemap
   - jekyll-sitemap
