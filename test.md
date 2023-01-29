@@ -4,4 +4,6 @@ title: Test
 permalink: /test/
 ---
 
-Test
+{{ jekyll.environment }}
+
+{{ site.google_analytics }}
