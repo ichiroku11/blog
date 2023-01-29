@@ -1,8 +1,7 @@
-remote_theme: jekyll/minima
-timezone: Asia/Tokyo
-title: いちろぐ
-
 google_analytics: G-BKTC9CNL0Y
+remote_theme: jekyll/minima
+title: いちろぐ
+timezone: Asia/Tokyo
 
 # https://github.com/jekyll/minima
 minima:
@@ -11,8 +10,6 @@ minima:
   social_links:
     - { platform: github, user_url: "https://github.com/ichiroku11" }
     - { platform: twitter, user_url: "https://twitter.com/ichiroku11" }
-
-#paginate: 10
 
 plugins:
   # feed.xml
