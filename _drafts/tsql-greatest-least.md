@@ -27,9 +27,10 @@ Least
 
 引数は式なので、定数以外にも変数や関数、列なども指定できるようですね。
 
+// todo:
+
 GREATEST
 https://learn.microsoft.com/ja-jp/sql/t-sql/functions/logical-functions-greatest-transact-sql?view=azuresqldb-current
-
 
 LEAST
 https://learn.microsoft.com/ja-jp/sql/t-sql/functions/logical-functions-least-transact-sql?view=azuresqldb-current
