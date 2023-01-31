@@ -25,13 +25,9 @@ Least
 */
 ```
 
-引数は式なので、定数以外にも変数や関数、列なども指定できるようですね。
+引数で指定するのは式なので定数以外にも変数や関数、列なども指定できるようですね。
 
-// todo:
-
-GREATEST
-https://learn.microsoft.com/ja-jp/sql/t-sql/functions/logical-functions-greatest-transact-sql?view=azuresqldb-current
-
-LEAST
-https://learn.microsoft.com/ja-jp/sql/t-sql/functions/logical-functions-least-transact-sql?view=azuresqldb-current
+### 参考
+- [GREATEST (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/t-sql/functions/logical-functions-greatest-transact-sql?view=azuresqldb-current)
+- [LEAST (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/t-sql/functions/logical-functions-least-transact-sql?view=azuresqldb-current)
 
