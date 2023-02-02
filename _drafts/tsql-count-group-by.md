@@ -35,6 +35,8 @@ GroupId     Value
 */
 ```
 
+`WHERE`で存在しないグループを条件に指定し、グルーピングしないクエリでは、0件として取得できます。
+
 ```sql
 declare @groupId int = 3;
 
@@ -47,7 +49,11 @@ Count
 -----
 0
 */
+```
 
+`WHERE`で存在しないグループを条件に指定しつつ、`GROUP BY`してしまうと結果が空になります。
+
+```sql
 -- うっかりグルーピングしちゃうとダメ
 select GroupId, count(*)
 from dbo.Sample
@@ -58,4 +64,3 @@ GroupId     Count
 ----------- -----
 */
 ```
-
