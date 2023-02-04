@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure App Service - ランタイム監視と手動監視が設定された場合は手動監視が有効になる"
-date:
+date: 2023-02-04
 tags: azure-app-service azure-monitor azure-app-insights
 ---
 
@@ -22,4 +22,3 @@ Azure App ServiceにデプロイしたASP.NET CoreアプリケーションでApp
 ```
 
 [Azure App Service のパフォーマンスの監視 &#124; Azure Monitor &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/azure-web-apps)
-
