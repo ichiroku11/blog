@@ -19,3 +19,28 @@ InvalidOperationException: 構成された実行戦略 'SqlServerRetryingExecuti
 コード上ではこのあたりかなと。
 
 [efcore/ExecutionStrategy.cs at main · dotnet/efcore · GitHub](https://github.com/dotnet/efcore/blob/main/src/EFCore/Storage/ExecutionStrategy.cs#L385-L406)
+
+```csharp
+protected virtual void OnFirstExecution()
+{
+    if (RetriesOnFailure
+        && (Dependencies.CurrentContext.Context.Database.CurrentTransaction is not null
+            || Dependencies.CurrentContext.Context.Database.GetEnlistedTransaction() is not null
+            || (((IDatabaseFacadeDependenciesAccessor)Dependencies.CurrentContext.Context.Database).Dependencies
+                .TransactionManager as
+                ITransactionEnlistmentManager)?.CurrentAmbientTransaction is not null))
+    {
+        throw new InvalidOperationException(
+            CoreStrings.ExecutionStrategyExistingTransaction(
+                GetType().Name,
+                nameof(DbContext)
+                + "."
+                + nameof(DbContext.Database)
+                + "."
+                + nameof(DatabaseFacade.CreateExecutionStrategy)
+                + "()"));
+    }
+
+    ExceptionsEncountered.Clear();
+}
+```
