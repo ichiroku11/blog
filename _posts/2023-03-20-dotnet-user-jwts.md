@@ -1,7 +1,7 @@
 ---
 layout: post
 title: dotnet user-jwtsで開発用のJWTを用意する
-date: 
+date: 2023-03-20
 tags: dotnet aspnetcore jwt
 ---
 
