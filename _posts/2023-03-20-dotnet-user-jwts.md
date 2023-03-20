@@ -62,6 +62,7 @@ Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RVc2VyIiwi
 ```
 
 JWTのペイロードのクレームは、次のようになっていました。
+
 | クレーム | 説明 |
 |--|--|
 | `unique_name` | `--name`オプションで指定したユーザー名 |
