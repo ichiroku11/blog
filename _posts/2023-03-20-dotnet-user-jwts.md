@@ -7,7 +7,7 @@ tags: dotnet aspnetcore jwt
 
 .NET 7で追加された`dotnet user-jwts`を使うと、開発用のJWTを作成したり管理できます。JWTを扱うASP.NET Core Web APIの開発が捗ります。
 
-(Generate tokens with dotnet user-jwts &#124; Microsoft Learn)[https://learn.microsoft.com/en-us/aspnet/core/security/authentication/jwt-authn?view=aspnetcore-7.0&tabs=windows]
+[Generate tokens with dotnet user-jwts &#124; Microsoft Learn](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/jwt-authn?view=aspnetcore-7.0&tabs=windows)
 
 今回は、下記コマンドを実行したときに生成されるJWTなどを確認していきます。
 
@@ -30,7 +30,7 @@ Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RVc2VyIiwi
 
 生成されたJWTをデコードして確認してみましょう。
 
-##### JWTのヘッダー：
+###### JWTのヘッダー：
 ```json
 {
   "alg": "HS256",
@@ -38,7 +38,7 @@ Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RVc2VyIiwi
 }
 ```
 
-##### JWTのペイロード：
+###### JWTのペイロード：
 ```json
 {
   "unique_name": "TestUser",
@@ -63,7 +63,7 @@ Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RVc2VyIiwi
 
 JWTのペイロードのクレームは、次のようになっていました。
 |クレーム|説明|
-|-|-|
+|--|--|
 |`unique_name`|`--name`オプションで指定したユーザー名|
 |`sub`|`--name`オプションで指定したユーザー名|
 |`jti`|JWTのID|
@@ -110,4 +110,4 @@ Authentication:Schemes:Bearer:SigningKeys:0:Id = 90d3d357
 
 JWTの検証時にTokenValidationParametersクラスでこのあたりの情報が使われるんだろうと思います。
 
-(TokenValidationParameters Class (Microsoft.IdentityModel.Tokens) &#124; Microsoft Learn)[https://learn.microsoft.com/en-us/dotnet/api/microsoft.identitymodel.tokens.tokenvalidationparameters?view=msal-web-dotnet-latest]
+[TokenValidationParameters Class (Microsoft.IdentityModel.Tokens) &#124; Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/microsoft.identitymodel.tokens.tokenvalidationparameters?view=msal-web-dotnet-latest)
