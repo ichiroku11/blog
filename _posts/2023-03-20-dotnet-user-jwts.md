@@ -62,17 +62,17 @@ Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlRlc3RVc2VyIiwi
 ```
 
 JWTのペイロードのクレームは、次のようになっていました。
-|クレーム|説明|
+| クレーム | 説明 |
 |--|--|
-|`unique_name`|`--name`オプションで指定したユーザー名|
-|`sub`|`--name`オプションで指定したユーザー名|
-|`jti`|JWTのID|
-|`scope`|`--scope`オプションで指定したスコープ|
-|`aud`|ASP.NET CoreプロジェクトのlaunchSettings.jsonに含まれるURL|
-|`nbf`|JWTの発行日時|
-|`exp`|`nbf`の6ヶ月後|
-|`iat`|おそらくJWTの発行日時（`nbf`と誤差ありますが）|
-|`iss`|デフォルトでは`dotnet-user-jwts`|
+| `unique_name` | `--name`オプションで指定したユーザー名 |
+| `sub` | `--name`オプションで指定したユーザー名 |
+| `jti` | JWTのID |
+| `scope` | `--scope`オプションで指定したスコープ |
+| `aud` | ASP.NET CoreプロジェクトのlaunchSettings.jsonに含まれるURL |
+| `nbf` | JWTの発行日時 |
+| `exp` | `nbf`の6ヶ月後 |
+| `iat` | おそらくJWTの発行日時（`nbf`と誤差ありますが） |
+| `iss` | デフォルトでは`dotnet-user-jwts` |
 
 コマンドのオプションとクレームの詳細は、Microsoft Learnの記事を確認しましょう。
 
