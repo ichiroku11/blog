@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ブックマークレット"
+title: "使っているブックマークレット"
 date: 2023-04-23
 tags: bookmarklet javascript
 ---
