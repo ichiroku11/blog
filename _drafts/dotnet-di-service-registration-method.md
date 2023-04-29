@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ".NET - DIのサービス登録メソッド（Add系/TryAdd系/TryAdd/TryAddEnumerable）の違いを確認する"
+title: ".NET - DIのサービス登録メソッド（Add系/TryAdd系/TryAddEnumerable）の違いを確認する"
 date: 
 tags: dotnet aspnetcore
 ---
@@ -9,16 +9,10 @@ tags: dotnet aspnetcore
 
 今回は`AddTransient`、`AddScoped`、`AddSingleton`といったサービスの有効期間（Lifetime）についてはふれません。
 
-サービス登録メソッドの違いについてざっくり言うと、同じサービス（インタフェース、抽象クラス）を複数登録できるか、同じサービスの実装（具象クラス）を複数登録できるかです。
+// todo:
 
-| メソッド | 同じサービスを複数登録できる | 同じサービスの実装を複数登録できる |
-|--|--|--|
-| `Add`系メソッド | ○ | ○ |
-| `TryAdd`系メソッド | × | ○ |
-| `TryAddEnumerable`メソッド | × | × |
-
-以下、例としてScopedを扱って、下記メソッドの違いがわかるサンプルコードです。
-- `AddScoped`
-- `TryAddScoped`
-- `TryAddEnumerable`
+例としてScopedを扱って下記メソッドの違いがわかるサンプルコードを残しておきます。
+- AddScopedメソッド
+- TryAddScopedメソッド
+- TryAddEnumerableメソッド
 
