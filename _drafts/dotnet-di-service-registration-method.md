@@ -35,12 +35,13 @@ AddScopedメソッド（AddTransient、AddSingletonを含めたAdd系メソッ�
 
 ```csharp
 var services = new ServiceCollection();
+services.AddScoped<IService, ServiceA>();
 
+// 同じサービスを複数登録できる
 services
+	// 同じサービスの同じ実装
 	.AddScoped<IService, ServiceA>()
-	// 同じサービスの同じ実装を登録できる
-	.AddScoped<IService, ServiceA>()
-	// 同じサービスの別の実装を登録できる
+	// 同じサービスの別の実装
 	.AddScoped<IService, ServiceB>();
 
 foreach (var service in services) {
@@ -53,16 +54,14 @@ foreach (var service in services) {
 
 ### TryAddScopedメソッド
 
-TryAdd系メソッドは、同じサービスを複数登録できません。
+TryAddScopedメソッド（TryAddTransient、TryAddSingletonを含めたTryAdd系メソッド）は、同じサービスを複数登録できません。
 
 ```csharp
 var services = new ServiceCollection();
 services.AddScoped<IService, ServiceA>();
 
-// 同じサービスの同じ実装を登録できない
+// 同じサービスを複数登録できない
 services.TryAddScoped<IService, ServiceA>();
-
-// 同じサービスの別の実装を登録できない
 services.TryAddScoped<IService, ServiceB>();
 
 foreach (var service in services) {
@@ -81,7 +80,6 @@ services.AddScoped<IService, ServiceA>();
 
 // 同じ実装は登録できない
 services.TryAddEnumerable(ServiceDescriptor.Scoped<IService, ServiceA>());
-
 // 別の実装であれば登録できる
 services.TryAddEnumerable(ServiceDescriptor.Scoped<IService, ServiceB>());
 
