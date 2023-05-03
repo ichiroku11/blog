@@ -19,11 +19,11 @@ TryAdd系メソッドは同じサービスに対して複数の実装を登録�
 | TryAddEnumerableメソッド | 異なる実装であれば登録できる |
 
 例としてScopedを扱って下記メソッドの違いを確認できるサンプルコードを残しておきます。
-- `AddScoped`メソッド
-- `TryAddScoped`メソッド
-- `TryAddEnumerable`メソッド
+- [`AddScoped`メソッド](#addscopedメソッド)
+- [`TryAddScoped`メソッド](#tryaddscopedメソッド)
+- [`TryAddEnumerable`メソッド](#tryaddenumerableメソッド)
 
-各サンプルで利用するインターフェイスと実装クラスを用意します。
+サンプルで利用するインターフェイスと実装クラスを用意しておきます。
 
 ```csharp
 public interface IService {
