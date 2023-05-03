@@ -15,6 +15,9 @@ plugins:
   # feed.xml
   # https://github.com/jekyll/jekyll-feed
   - jekyll-feed
+  # metadata
+  # https://github.com/jekyll/jekyll-seo-tag
+  - jekyll-seo-tag
   # sitemap.xml
   # https://github.com/jekyll/jekyll-sitemap
   - jekyll-sitemap
