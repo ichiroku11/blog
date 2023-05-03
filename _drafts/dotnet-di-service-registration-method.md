@@ -5,16 +5,23 @@ date:
 tags: dotnet aspnetcore
 ---
 
-.NETでDIを利用するときサービスを登録しますが、名前が`Add`から始まるメソッド、`TryAdd`から始まるメソッド、`TryAddEnumerable`メソッドの違いがよく分かっていなかったので軽くまとめたいと思います。
+.NETでDIを利用するときサービスを登録するメソッドがあります。
+名前が`Add`から始まるメソッド、`TryAdd`から始まるメソッド、`TryAddEnumerable`メソッドの違いがよく分かっていなかったので軽くまとめたいと思います。
+（この投稿では`AddTransient`、`AddScoped`、`AddSingleton`といったサービスの有効期間についてはふれません。）
 
-今回は`AddTransient`、`AddScoped`、`AddSingleton`といったサービスの有効期間（Lifetime）についてはふれません。
+それぞれのサービス登録メソッドの違いは、同じサービス（の実装）を複数登録したときに登録できるかどうかです。
+TryAdd系メソッドは同じサービスに対して複数の実装を登録できないのに対して、TryAddEnumerableメソッドは同じサービスに対して異なる実装であれば複数登録できます。
 
-// todo:
+| メソッド | 同じサービス（の実装）を複数登録したときの動き |
+|--|--|
+| Add系メソッド | 登録できる |
+| TryAdd系メソッド | 登録できない |
+| TryAddEnumerableメソッド | 異なる実装であれば登録できる |
 
-例としてScopedを扱って下記メソッドの違いがわかるサンプルコードを残しておきます。
-- AddScopedメソッド
-- TryAddScopedメソッド
-- TryAddEnumerableメソッド
+例としてScopedを扱って下記メソッドの違いを確認できるサンプルコードを残しておきます。
+- `AddScoped`メソッド
+- `TryAddScoped`メソッド
+- `TryAddEnumerable`メソッド
 
 各サンプルで利用するインターフェイスと実装クラスを用意します。
 
@@ -31,7 +38,7 @@ public class ServiceB : IService {
 
 ### AddScopedメソッド
 
-AddScopedメソッド（AddTransient、AddSingletonを含めたAdd系メソッド）は、同じサービスの実装を複数登録できます。
+`AddScoped`メソッド（`AddTransient`、`AddSingleton`を含めたAdd系メソッド）は、同じサービスの実装を複数登録できます。
 
 ```csharp
 var services = new ServiceCollection();
@@ -54,7 +61,7 @@ foreach (var service in services) {
 
 ### TryAddScopedメソッド
 
-TryAddScopedメソッド（TryAddTransient、TryAddSingletonを含めたTryAdd系メソッド）は、同じサービスを複数登録できません。
+`TryAddScoped`メソッド（`TryAddTransient`、`TryAddSingleton`を含めたTryAdd系メソッド）は、同じサービスを複数登録できません。
 
 ```csharp
 var services = new ServiceCollection();
@@ -72,7 +79,7 @@ foreach (var service in services) {
 
 ### TryAddEnumerableメソッド
 
-TryAddEnumerableメソッドは、同じサービスの同じ実装は登録できませんが、別の実装であれば登録できます。
+`TryAddEnumerable`メソッドは、同じサービスの同じ実装は登録できませんが、別の実装であれば登録できます。
 
 ```csharp
 var services = new ServiceCollection();
