@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ".NET - DIのサービス登録メソッド（Add系/TryAdd系/TryAddEnumerable）の違いを確認する"
-date: 
+date: 2023-05-05
 tags: dotnet aspnetcore
 ---
 
