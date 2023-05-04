@@ -5,7 +5,7 @@ date: 2023-05-05
 tags: dotnet aspnetcore
 ---
 
-.NETでDIを利用するときサービスを登録するメソッドがあります。
+.NETのDIで利用するサービスを登録するメソッドがあります。
 名前が`Add`から始まるメソッド、`TryAdd`から始まるメソッド、`TryAddEnumerable`メソッドの違いがよく分かっていなかったので軽くまとめたいと思います。
 （この投稿では`AddTransient`、`AddScoped`、`AddSingleton`といったサービスの有効期間についてはふれません。）
 
@@ -23,7 +23,7 @@ TryAdd系メソッドは同じサービスに対して複数の実装を登録�
 - [`TryAddScoped`メソッド](#tryaddscopedメソッド)
 - [`TryAddEnumerable`メソッド](#tryaddenumerableメソッド)
 
-サンプルで利用するインターフェイスと実装クラスを用意しておきます。
+まず、サンプルで利用するインターフェイスと実装クラスです。
 
 ```csharp
 public interface IService {
