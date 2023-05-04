@@ -96,3 +96,11 @@ foreach (var service in services) {
 // ServiceA
 // ServiceB
 ```
+
+### 参考
+
+- [依存関係の挿入 - .NET &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/core/extensions/dependency-injection#service-registration-methods)
+- [runtime/ServiceCollectionServiceExtensions.cs at main · dotnet/runtime · GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/ServiceCollectionServiceExtensions.cs)
+	- Add系メソッドの実装
+- [runtime/ServiceCollectionDescriptorExtensions.cs at main · dotnet/runtime · GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.DependencyInjection.Abstractions/src/Extensions/ServiceCollectionDescriptorExtensions.cs)
+	- TryAdd系メソッド、TryAddEnumerableメソッドの実装
