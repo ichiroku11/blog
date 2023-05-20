@@ -12,7 +12,7 @@ tags: dotnet aspnetcore
 - `Configure`メソッドと`PostConfigure`メソッドで指定したアクションは、オプションがDIで解決されるときに呼び出されること
 - `PostConfigure`で指定したアクションは、`Configure`で指定したアクションが呼び出された後に呼び出されること
 
-### todo:
+### ConfigureメソッドとPostConfigureメソッドで指定したアクションの呼び出しを確認する
 
 この2点を確認するサンプルコードです。
 
@@ -66,10 +66,7 @@ PostConfigure
 
 これらの動きを実装している部分を.NETのコードから確認したいと思います。
 
-まず、`AddOptions`メソッドの実装を確認しましょう。
-`IOptions<>`に対して`UnnamedOptionsManager`が、`IOptionsFactory`に対して`OptionsFactory`が登録されています。
-
-[todo](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/OptionsServiceCollectionExtensions.cs)
+まず`AddOptions`メソッドの実装を確認しましょう。`IOptions<>`に対して`UnnamedOptionsManager`、`IOptionsFactory`に対して`OptionsFactory`が登録されています。
 
 ```csharp
 public static class OptionsServiceCollectionExtensions
@@ -87,21 +84,16 @@ public static class OptionsServiceCollectionExtensions
     }
 }
 ```
+[runtime/OptionsServiceCollectionExtensions.cs at main · dotnet/runtime · GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/OptionsServiceCollectionExtensions.cs)
 
-次に`UnnamedOptionsManager`を確認すると、`IOptionsFactory.Create`メソッドを呼び出して、オプションを生成していることがわかります。
-
-[todo](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/UnnamedOptionsManager.c)
+次に`UnnamedOptionsManager`を確認すると、`IOptionsFactory.Create`メソッドを呼び出してオプションを生成していることがわかります。
 
 ```csharp
-internal sealed class UnnamedOptionsManager<[DynamicallyAccessedMembers(Options.DynamicallyAccessedMembers)] TOptions> :
-    IOptions<TOptions>
-    where TOptions : class
+internal sealed class UnnamedOptionsManager<TOptions> : IOptions<TOptions> where TOptions : class
 {
     private readonly IOptionsFactory<TOptions> _factory;
-    private volatile object? _syncObj;
-    private volatile TOptions? _value;
 
-    public UnnamedOptionsManager(IOptionsFactory<TOptions> factory) => _factory = factory;
+    // 省略
 
     public TOptions Value
     {
@@ -121,11 +113,39 @@ internal sealed class UnnamedOptionsManager<[DynamicallyAccessedMembers(Options.
 }
 ```
 
-最後に`OptionsFactory.Create`を見てみると、`IConfigureOptions<TOptions>.Configure`メソッド、`IPostConfigureOptions<TOptions>.PostConfigure`メソッドを順番に呼び出していることが確認できます。
+[runtime/UnnamedOptionsManager.cs at main · dotnet/runtime · GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/UnnamedOptionsManager.c)
 
-[todo](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/OptionsFactory.cs)
+最後に`OptionsFactory.Create`を見てみると、`IConfigureOptions<TOptions>.Configure`メソッド、`IPostConfigureOptions<TOptions>.PostConfigure`メソッドを順番に呼び出していることを確認できます。
 
 ```csharp
-// todo
+public class OptionsFactory<TOptions> : IOptionsFactory<TOptions> where TOptions : class
+{
+    // 省略
+
+    public TOptions Create(string name)
+    {
+        TOptions options = CreateInstance(name);
+        foreach (IConfigureOptions<TOptions> setup in _setups)
+        {
+            if (setup is IConfigureNamedOptions<TOptions> namedSetup)
+            {
+                namedSetup.Configure(name, options);
+            }
+            else if (name == Options.DefaultName)
+            {
+                setup.Configure(options);
+            }
+        }
+        foreach (IPostConfigureOptions<TOptions> post in _postConfigures)
+        {
+            post.PostConfigure(name, options);
+        }
+
+        // 省略
+
+        return options;
+    }
+}
 ```
+[runtime/OptionsFactory.cs at main · dotnet/runtime · GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/OptionsFactory.cs)
 
