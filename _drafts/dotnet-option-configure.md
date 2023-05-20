@@ -66,7 +66,7 @@ PostConfigure
 
 これらの動きを実装している部分を.NETのコードから確認したいと思います。
 
-まず`AddOptions`メソッドの実装を確認しましょう。`IOptions<>`に対して`UnnamedOptionsManager`、`IOptionsFactory`に対して`OptionsFactory`が登録されています。
+まず`AddOptions`メソッドの実装を確認しましょう。`IOptions<>`に対して`UnnamedOptionsManager<>`、`IOptionsFactory<>`に対して`OptionsFactory<>`が登録されています。
 
 ```csharp
 public static class OptionsServiceCollectionExtensions
