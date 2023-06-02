@@ -66,7 +66,7 @@ PostConfigure
 
 これらの動きを実装している部分を.NETのコードから確認したいと思います。
 
-まず`AddOptions`メソッドの実装を確認しましょう。`IOptions<>`に対して`UnnamedOptionsManager<>`、`IOptionsFactory<>`に対して`OptionsFactory<>`が登録されています。
+まず`AddOptions`メソッドの実装を確認しましょう。`IOptions<>`に対して`UnnamedOptionsManager<>`、`IOptionsFactory<>`に対して`OptionsFactory<>`が登録されています。この2つの登録以外はこの投稿では扱いません。無視してください。
 
 ```csharp
 public static class OptionsServiceCollectionExtensions
@@ -86,7 +86,7 @@ public static class OptionsServiceCollectionExtensions
 ```
 [runtime/OptionsServiceCollectionExtensions.cs at main · dotnet/runtime · GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/OptionsServiceCollectionExtensions.cs)
 
-次に`UnnamedOptionsManager`を確認すると、`IOptionsFactory.Create`メソッドを呼び出してオプションを生成していることがわかります。
+次に`UnnamedOptionsManager.Value`プロパティを確認すると、`IOptionsFactory.Create`メソッドを呼び出してオプションを生成していることがわかります。
 
 ```csharp
 internal sealed class UnnamedOptionsManager<TOptions> : IOptions<TOptions> where TOptions : class
@@ -115,7 +115,7 @@ internal sealed class UnnamedOptionsManager<TOptions> : IOptions<TOptions> where
 
 [runtime/UnnamedOptionsManager.cs at main · dotnet/runtime · GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/UnnamedOptionsManager.c)
 
-最後に`OptionsFactory.Create`を見てみると、`IConfigureOptions<TOptions>.Configure`メソッド、`IPostConfigureOptions<TOptions>.PostConfigure`メソッドを順番に呼び出していることを確認できます。
+最後に`OptionsFactory.Create`メソッドを見てみると、`IConfigureOptions<TOptions>.Configure`メソッド、`IPostConfigureOptions<TOptions>.PostConfigure`メソッドを順番に呼び出していることがわかります。
 
 ```csharp
 public class OptionsFactory<TOptions> : IOptionsFactory<TOptions> where TOptions : class
@@ -149,3 +149,4 @@ public class OptionsFactory<TOptions> : IOptionsFactory<TOptions> where TOptions
 ```
 [runtime/OptionsFactory.cs at main · dotnet/runtime · GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Options/src/OptionsFactory.cs)
 
+以上、`Configure`メソッドと`PostConfigure`メソッドについて、サンプルと.NETの実装から確認してみました。
