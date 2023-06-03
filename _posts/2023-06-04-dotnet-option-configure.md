@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ".NET - オプションのConfigureとPostConfigureを確認する"
-date: 
+date: 2023-06-04
 tags: dotnet aspnetcore
 ---
 
