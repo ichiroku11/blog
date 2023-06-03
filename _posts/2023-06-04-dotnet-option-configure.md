@@ -26,13 +26,13 @@ var services = new ServiceCollection();
 services
 	.AddOptions<SampleOptions>()
 	.Configure(options => {
-		// オプションを構成する
 		Console.WriteLine("Configure");
+		// オプションを構成する
 		options.Value = 1;
 	})
 	.PostConfigure(options => {
-		// オプションを構成する
 		Console.WriteLine("PostConfigure");
+		// オプションを構成する
 		options.Value = 2;
 	});
 var serviceProvider = services.BuildServiceProvider();
