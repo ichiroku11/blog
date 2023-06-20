@@ -11,16 +11,25 @@ ASP.NET CoreのWebアプリケーションにLINEログインを組み込むミ�
 
 LINEログインはOpenID Connectをサポートしているので、OpenID Connect関連の設定を構成していく感じでOKです。
 
-この記事では、LINE Developers上の設定は省略します。
+検索して見つかったサンプルは古いものが多かったような気がしたのでこの記事を書いてみました。
 
-### 最低限すること
+### LINログインに対応するためにすること
 
-// todo:
-- nugetで`Microsoft.AspNetCore.Authentication.OpenIdConnect`インストール
-- LINE上のヘルプとか
+LINEログインに対応するには、次のことを行います。LINE Developersでプロバイダーとチャネルを生成する必要がありますが、この記事では省略しています。
+
+- NuGetで`Microsoft.AspNetCore.Authentication.OpenIdConnect`をインストールする
+- `AddOpenIdConnect`メソッドで`OpenIdConnectOptions`を構成する
+	- チャネルIDとチャネルシークレットを利用する
+	- ディスカバリーエンドポイントを指定する
+		- todo:
+	- `response_type`に`code`を指定する
+		- todo:
+	- チャネルシークレットを使って署名を検証する対称鍵を指定する
+		- todo:
+
+詳細は下記サンプルコードを見ていただけると。
 
 ### LINEログインに対応したミニマムなサンプル
-
 
 ```csharp
 // Program.cs
@@ -43,17 +52,18 @@ services
 	.AddCookie(options => {
 	})
 	.AddOpenIdConnect(options => {
-		// todo:
+		// Developersコンソールで確認できるチャネルIDとチャネルシークレット
 		options.ClientId = "{チャネルID}";
 		options.ClientSecret = "{チャネルシークレット}";
 
-		// todo:
+		// ディスカバリーエンドポイント
 		options.MetadataAddress = "https://access.line.me/.well-known/openid-configuration";
 
-		// todo:
+		// response_typeはcode
 		options.ResponseType = OpenIdConnectResponseType.Code;
 
-		// todo:
+		// 署名を検証する鍵
+		// IDトークンは、クライアントシークレットの対称鍵で署名されている様子
 		options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(options.ClientSecret));
 	});
 
@@ -71,7 +81,7 @@ app.MapGet("/protected", (ClaimsPrincipal user) => $"Hello {user.Identity?.Name}
 app.Run();
 ```
 
-検索して見つかったサンプルは古いものが多かったような気がしたのでこの記事を書いてみました。
+ASP.NET Core 6.0で確認しました。
 
 ### 参考
 - // todo:
