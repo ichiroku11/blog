@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "ASP.NET Core - LINEログインに対応する"
-date: 
-tags: dotnet aspnetcore openid-connect
+date: 2023-07-02
+tags: dotnet aspnetcore openid-connect line
 ---
 
 ASP.NET CoreのWebアプリケーションにLINEログインを組み込むミニマムサンプルです。
