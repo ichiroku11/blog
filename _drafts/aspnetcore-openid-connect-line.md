@@ -7,7 +7,7 @@ tags: dotnet aspnetcore openid-connect
 
 ASP.NET CoreのWebアプリケーションにLINEログインを組み込むミニマムサンプルです。
 
-[LINEログイン | LINE Developers](https://developers.line.biz/ja/services/line-login/)
+[LINEログイン &#124; LINE Developers](https://developers.line.biz/ja/services/line-login/)
 
 LINEログインはOpenID Connectをサポートしているので、OpenID Connect関連の設定を構成していく感じでOKです。
 
@@ -19,15 +19,12 @@ LINEログインに対応するには、次のことを行います。LINE Devel
 
 - NuGetで`Microsoft.AspNetCore.Authentication.OpenIdConnect`をインストールする
 - `AddOpenIdConnect`メソッドで`OpenIdConnectOptions`を構成する
-	- チャネルIDとチャネルシークレットを利用する
-	- ディスカバリーエンドポイントを指定する
-		- todo:
-	- `response_type`に`code`を指定する
-		- todo:
-	- チャネルシークレットを使って署名を検証する対称鍵を指定する
-		- todo:
+	- チャネルIDとチャネルシークレットを指定する
+	- ディスカバリーエンドポイントを指定する[^1]
+	- `response_type`に`code`を指定する[^2]
+	- チャネルシークレットを使って署名を検証する対称鍵を指定する[^1]
 
-詳細は下記サンプルコードを見ていただけると。
+詳細は下記サンプルコードで。
 
 ### LINEログインに対応したミニマムなサンプル
 
@@ -83,5 +80,6 @@ app.Run();
 
 ASP.NET Core 6.0で確認しました。
 
-### 参考
-- // todo:
+[^1]: [IDトークンからプロフィール情報を取得する &#124; LINE Developers](https://developers.line.biz/ja/docs/line-login/verify-id-token/#signature)
+
+[^2]: [ウェブアプリにLINEログインを組み込む &#124; LINE Developers](https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request)
