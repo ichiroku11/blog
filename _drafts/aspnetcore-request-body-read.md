@@ -24,11 +24,76 @@ The request body can only be read once, from beginning to end.
 Forward-only reading of the request body avoids the overhead of buffering the entire request body and reduces memory usage.
 ```
 
-実際にコードを書いて1回のみ読み取れることを確認したいと思います。
+Minimal APIとMVCそれぞれでコードを書いて1回のみ読み取れることを確認したいと思います。
 
 ### Minimal APIで動きを確認する
 
 // todo:
+リクエストボディを2回読み取るEndpointを定義します。
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.UseRouting();
+app.UseEndpoints(endpoints => {
+	// HTTPボディを確認するEndpoint
+	endpoints.MapPost("/body", async context => {
+		// シークできるか
+		var canSeek = context.Request.Body.CanSeek;
+
+		// 1回目の読み取り
+		var first = await new StreamReader(context.Request.Body, leaveOpen: true).ReadToEndAsync();
+
+		// Positionを操作して巻き戻し
+		var thrown = false;
+		try {
+			context.Request.Body.Position = 0;
+		} catch (NotSupportedException) {
+			thrown = true;
+		}
+
+		// 2回目の読み取り
+		var second = await new StreamReader(context.Request.Body, leaveOpen: true).ReadToEndAsync();
+
+		// レスポンス
+		var json = JsonSerializer.Serialize(
+			new {
+				canSeek,
+				first,
+				second,
+				thrown
+			},
+			new JsonSerializerOptions {
+				DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
+				PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+				WriteIndented = true,
+			});
+		await context.Response.WriteAsync(json);
+	});
+});
+app.Run();
+```
+
+// todo:
+このエンドポイントに対して
+
+```csharp
+POST https://localhost/body
+Content-Type: text/plain; charset=utf-8
+
+content
+```
+
+```json
+{
+  "canSeek": false,
+  "first": "content",
+  "second": "",
+  "thrown": true
+}
+```
+
 
 ### MVC（APIコントローラー）で動きを確認する
 
