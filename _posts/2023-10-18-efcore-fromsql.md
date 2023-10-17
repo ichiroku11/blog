@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "EF Core - FromSqlとFromSqlInterpolatedは同じ"
-date: 
+date: 2023-10-18
 tags: efcore
 ---
 
