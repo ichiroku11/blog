@@ -10,7 +10,7 @@ tags: aspnetcore
 コントローラーのアクション内で`HttpRequest.Body`からコンテンツを読み取れない場合があって調べた際に知りました。
 
 下記ドキュメントより引用します。
-(ASP.NET Core で HttpContext を使用する &#124; Microsoft Learn)[https://learn.microsoft.com/ja-jp/aspnet/core/fundamentals/use-http-context?view=aspnetcore-7.0#enable-request-body-buffering]
+[ASP.NET Core で HttpContext を使用する &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/aspnet/core/fundamentals/use-http-context?view=aspnetcore-7.0#enable-request-body-buffering)
 
 ##### 日本語
 ```
