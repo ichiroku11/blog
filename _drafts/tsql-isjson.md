@@ -9,6 +9,11 @@ tags: t-sql
 
 [ISJSON (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/t-sql/functions/isjson-transact-sql)
 
+ISJSON関数は、1つ目の引数にテストする文字列を指定し、2つ目の引数にチェックするJSONの種類を指定します。
+
+2つ目の引数json_type_constraintによって変わる結果を確認していきましょう。
+
+### json_type_constraint引数を省略した場合は、オブジェクトか配列であれば1を返す
 
 ```sql
 select
