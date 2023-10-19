@@ -13,7 +13,7 @@ ISJSON関数は、1つ目の引数にテストする文字列を指定し、2つ
 
 2つ目の引数json_type_constraintによって変わる結果を確認していきましょう。
 
-### json_type_constraint引数を省略した場合は、オブジェクトか配列であれば1を返す
+### json_type_constraint引数を省略した場合、オブジェクトか配列であれば1を返す
 
 ```sql
 select
@@ -31,6 +31,8 @@ true        false       null        number      string      object      array
 */
 ```
 
+### json_type_constraint引数にVALUEを指定した場合、真偽値・数値・文字列・null・オブジェクト・配列であれば1を返す
+
 ```sql
 select
     isjson('true', value) as [true],
@@ -46,6 +48,8 @@ true        false       number      string      null        object      array
 1           1           1           1           1           1           1
 */
 ```
+
+### json_type_constraint引数にARRAYを指定した場合、配列であれば1を返す
 
 ```sql
 select
@@ -63,6 +67,8 @@ true        false       number      string      null        object      array
 */
 ```
 
+### json_type_constraint引数にOBJECTを指定した場合、オブジェクトであれば1を返す
+
 ```sql
 select
     isjson('true', object) as [true],
@@ -78,6 +84,8 @@ true        false       number      string      null        object      array
 0           0           0           0           0           1           0
 */
 ```
+
+### json_type_constraint引数にSCALARを指定した場合、数値と文字列であれば1を返す
 
 ```sql
 select
