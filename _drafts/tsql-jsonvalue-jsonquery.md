@@ -1,0 +1,36 @@
+---
+layout: post
+title: "T-SQL - JSON_VALUE関数/JSON_QUERY関数を確認する"
+date: 
+tags: t-sql
+---
+
+JSON文字列からスカラー値を返すJSON_VALUE関数とJSON文字列からオブジェクトまたは配列を返すJSON_QUERY関数を試します。
+
+### JSON_VALUE関数
+
+```sql
+declare @json nvarchar(max) = '{
+    "a": true,
+    "b": 1,
+    "c": "xyz",
+    "d": null,
+    "x": {},
+    "y": []
+}';
+
+select
+    json_value(@json, '$.a') as [boolean],
+    json_value(@json, '$.b') as [number],
+    json_value(@json, '$.c') as [string],
+    json_value(@json, '$.d') as [null],
+    json_value(@json, '$.x') as [object],
+    json_value(@json, '$.y') as [array];
+/*
+// todo: 結果
+*/
+```
+
+### JSON_QUERY関数
+
+// todo:
