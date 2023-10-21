@@ -9,6 +9,8 @@ JSON文字列からスカラー値を返すJSON_VALUE関数とJSON文字列か�
 
 ### JSON_VALUE関数
 
+// todo:
+
 ```sql
 declare @json nvarchar(max) = '{
     "a": true,
@@ -34,3 +36,26 @@ select
 ### JSON_QUERY関数
 
 // todo:
+
+```sql
+declare @json nvarchar(max) = '{
+    "a": true,
+    "b": 1,
+    "c": "xyz",
+    "d": null,
+    "x": {},
+    "y": []
+}';
+
+select
+    json_query(@json, '$') as [root],
+    json_query(@json, '$.a') as [boolean],
+    json_query(@json, '$.b') as [number],
+    json_query(@json, '$.c') as [string],
+    json_query(@json, '$.d') as [null],
+    json_query(@json, '$.x') as [object],
+    json_query(@json, '$.y') as [array];
+/*
+// todo: 結果
+*/
+```
