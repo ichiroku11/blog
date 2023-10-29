@@ -15,6 +15,8 @@ ISJSON関数は、1つ目の引数にテストする文字列を指定し、2つ
 
 ### json_type_constraint引数を省略した場合、オブジェクトか配列であれば1を返す
 
+`ARRAY`の結果と`OBJECT`の結果のORという感じ。
+
 ```sql
 select
     isjson('true') as [true],
@@ -32,6 +34,8 @@ true        false       null        number      string      object      array
 ```
 
 ### json_type_constraint引数にVALUEを指定した場合、真偽値・数値・文字列・null・オブジェクト・配列であれば1を返す
+
+有効なJSON値であれば`1`を返すと。
 
 ```sql
 select
@@ -86,6 +90,8 @@ true        false       number      string      null        object      array
 ```
 
 ### json_type_constraint引数にSCALARを指定した場合、数値と文字列であれば1を返す
+
+真偽値や`null`では結果が`0`になります。
 
 ```sql
 select
