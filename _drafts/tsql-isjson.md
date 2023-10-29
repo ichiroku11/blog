@@ -5,11 +5,11 @@ date:
 tags: t-sql
 ---
 
-引数がJSON文字列かどうかチェックできるISJSON関数を見つけたので、実行結果を確認したいと思います。
+引数に渡された値がJSON文字列かどうかチェックできるISJSON関数を見つけたので、実行結果を確認したいと思います。
 
 [ISJSON (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/t-sql/functions/isjson-transact-sql)
 
-ISJSON関数は、1つ目の引数にテストする文字列を指定し、2つ目の引数にチェックするJSONの種類を指定します。
+ISJSON関数は、1つ目の引数にテストする文字列を指定し、2つ目の引数にチェックするJSONのタイプ（種類）を指定します。
 
 2つ目の引数json_type_constraintによって変わる結果を確認していきましょう。
 
