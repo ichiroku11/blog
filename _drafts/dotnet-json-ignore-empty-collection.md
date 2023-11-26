@@ -7,17 +7,12 @@ tags: dotnet
 
 System.Text.Jsonを使っていて、空のコレクションを返すプロパティをシリアライズしたくない（出力したくないというか無視したいというか）ときがあったので、対応を考えてみましたという内容です。
 
-// todo:
-/*
 nullやデフォルト値の場合にシリアライズしない方法は、JsonIgnoreConditionを使うとあっさりできます。下記を参照ください。
 // todo:
 - https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/ignore-properties
 - https://learn.microsoft.com/ja-jp/dotnet/api/system.text.json.serialization.jsonignorecondition
 
-シリアライズ対象のクラスを編集できるのであれば、JsonIgnoreCondition.WhenWritingNull
-
-JsonIgnoreConditionにWhenWritingEmptyみたいなのがあればよかったのですが残念ながらないので作ってみましょうと。
-*/
+シリアライズ対象のクラスを編集できるのであれば、`JsonIgnoreCondition.WhenWritingNull`を使って実現します。編集できないクラスであれば、JSONコントラクトというメタデータ（`JsonTypeInfo`）を使って実現します。
 
 ### 既存の動き
 
@@ -45,7 +40,10 @@ public class Sample {
 
 ### シリアライズ対象のクラスを編集できるとき
 
-// todo: 
+シリアライズ対象を編集できるのであれば、空のコレクションのプロパティに対して、
+1. `JsonIgnoreCondition.WhenWritingNull`の`JsonIgnoreAttribute`を指定する
+2. getアクセサーを、コレクションが空であれば`null`を返すように実装する
+という感じで少しトリッキーな感じですが、いけるかなと。
 
 ```csharp
 using System.Text.Json.Serialization;
