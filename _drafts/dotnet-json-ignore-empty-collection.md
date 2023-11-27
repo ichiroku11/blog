@@ -12,7 +12,7 @@ nullやデフォルト値の場合にシリアライズしない方法は、Json
 - https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/ignore-properties
 - https://learn.microsoft.com/ja-jp/dotnet/api/system.text.json.serialization.jsonignorecondition
 
-シリアライズ対象のクラスを編集できるのであれば、`JsonIgnoreCondition.WhenWritingNull`を使って実現します。編集できないクラスであれば、JSONコントラクトというメタデータ（`JsonTypeInfo`）を使って実現します。
+シリアライズするクラスを編集できるのであれば、`JsonIgnoreCondition.WhenWritingNull`を使って実現します。編集できないクラスであれば、JSONコントラクトというメタデータ（`JsonTypeInfo`）を使って実現します。
 
 ### 既存の動き
 
@@ -38,11 +38,11 @@ public class Sample {
 }
 ```
 
-### シリアライズ対象のクラスを編集できるとき
+### シリアライズするクラスを編集できるとき
 
 シリアライズ対象を編集できるのであれば、空のコレクションのプロパティに対して、
 1. `JsonIgnoreCondition.WhenWritingNull`の`JsonIgnoreAttribute`を指定する
-2. getアクセサーを、コレクションが空であれば`null`を返すように実装する
+- getアクセサーを、コレクションが空であれば`null`を返すように実装する
 という感じで少しトリッキーな感じですが、いけるかなと。
 
 ```csharp
@@ -76,9 +76,11 @@ public class Sample {
 }
 ```
 
-### シリアライズ対象のクラスを編集できないとき
+### シリアライズするクラスを編集できないとき
 
-// todo:
+コレクションのプロパティが空であれば`null`を返すという実装ができない場合、
+1. `JsonSerializerOptions.DefaultIgnoreCondition`に`JsonIgnoreCondition.WhenWritingNull`を指定する
+- JSONコントラクトというメタデータを加工して、空なら`null`を返す
 
 ```csharp
 using System.Text.Json.Serialization.Metadata;
