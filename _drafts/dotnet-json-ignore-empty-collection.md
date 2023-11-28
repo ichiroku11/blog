@@ -41,7 +41,7 @@ public class Sample {
 
 シリアライズ対象を編集できるのであれば、空のコレクションのプロパティに対して、
 1. `JsonIgnoreCondition.WhenWritingNull`の`JsonIgnoreAttribute`を指定する
-- getアクセサーをコレクションが空であれば`null`を返すようにする
+2. getアクセサーをコレクションが空であれば`null`を返すようにする
 という実装で少しトリッキーな気もしますがいけるかなと。
 
 ```csharp
@@ -79,7 +79,7 @@ public class Sample {
 
 コレクションのプロパティが空であれば`null`を返すという上記実装ができない場合、
 1. `JsonSerializerOptions.DefaultIgnoreCondition`に`JsonIgnoreCondition.WhenWritingNull`を指定する
-- JSONコントラクトというメタデータをカスタマイズして、コレクションが空なら`null`を返す
+2. JSONコントラクトというメタデータをカスタマイズして、コレクションが空なら`null`を返す
 という実装で実現できます。
 
 JSONコントラクトのカスタマイズについては下記ドキュメントが参考になります。
