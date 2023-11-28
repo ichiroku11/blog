@@ -7,12 +7,11 @@ tags: dotnet
 
 System.Text.Jsonを使っていて、空のコレクションを返すプロパティをシリアライズしたくない（出力したくないというか無視したいというか）ときがあったので、対応を考えてみましたという内容です。
 
-nullやデフォルト値の場合にシリアライズしない方法は、JsonIgnoreConditionを使うとあっさりできます。下記を参照ください。
-// todo:
-- https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/ignore-properties
-- https://learn.microsoft.com/ja-jp/dotnet/api/system.text.json.serialization.jsonignorecondition
-
 シリアライズするクラスを編集できるのであれば、`JsonIgnoreCondition.WhenWritingNull`を使って実現します。編集できないクラスであれば、JSONコントラクトというメタデータ（`JsonTypeInfo`）を使って実現します。
+
+nullやデフォルト値の場合にシリアライズしない方法は、JsonIgnoreConditionを使うとあっさりできます。下記を参照ください。
+- [System.Text.Json でプロパティを無視する方法 - .NET &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/ignore-properties)
+- [JsonIgnoreCondition 列挙型 (System.Text.Json.Serialization) &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/api/system.text.json.serialization.jsonignorecondition)
 
 ### 既存の動き
 
@@ -42,8 +41,8 @@ public class Sample {
 
 シリアライズ対象を編集できるのであれば、空のコレクションのプロパティに対して、
 1. `JsonIgnoreCondition.WhenWritingNull`の`JsonIgnoreAttribute`を指定する
-- getアクセサーを、コレクションが空であれば`null`を返すように実装する
-という感じで少しトリッキーな感じですが、いけるかなと。
+- getアクセサーをコレクションが空であれば`null`を返すようにする
+という実装で少しトリッキーな気もしますがいけるかなと。
 
 ```csharp
 using System.Text.Json.Serialization;
@@ -78,18 +77,20 @@ public class Sample {
 
 ### シリアライズするクラスを編集できないとき
 
-コレクションのプロパティが空であれば`null`を返すという実装ができない場合、
+コレクションのプロパティが空であれば`null`を返すという上記実装ができない場合、
 1. `JsonSerializerOptions.DefaultIgnoreCondition`に`JsonIgnoreCondition.WhenWritingNull`を指定する
-- JSONコントラクトというメタデータを加工して、空なら`null`を返す
+- JSONコントラクトというメタデータをカスタマイズして、コレクションが空なら`null`を返す
+という実装で実現できます。
+
+JSONコントラクトのカスタマイズについては下記ドキュメントが参考になります。
+- [カスタム シリアル化コントラクトと逆シリアル化コントラクト - .NET &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/custom-contracts)
 
 ```csharp
 using System.Text.Json.Serialization.Metadata;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
-// 空のコレクションを返すプロパティのJSONコントラクトを変更する
-// 参考
-// https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/custom-contracts
+// 空のコレクションを返すプロパティのJSONコントラクトをカスタマイズする
 var modifier = (JsonTypeInfo typeInfo) => {
     if (typeInfo.Kind is not JsonTypeInfoKind.Object) {
         return;
@@ -115,6 +116,7 @@ var options = new JsonSerializerOptions {
     // nullをシリアライズしない
     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
     TypeInfoResolver = new DefaultJsonTypeInfoResolver {
+        // JSONコントラクトをカスタマイズする
         Modifiers = { modifier }
     }
 };
@@ -129,4 +131,3 @@ public class Sample {
     public IEnumerable<int> Values { get; init; } = Enumerable.Empty<int>();
 }
 ```
-
