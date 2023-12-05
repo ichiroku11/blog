@@ -84,8 +84,7 @@ public class Sample {
 
 という実装で実現できます。
 
-JSONコントラクトのカスタマイズについては下記ドキュメントが参考になります。
-- [カスタム シリアル化コントラクトと逆シリアル化コントラクト - .NET &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/custom-contracts)
+以下サンプルコードです。
 
 ```csharp
 using System.Text.Json.Serialization.Metadata;
@@ -133,3 +132,6 @@ public class Sample {
     public IEnumerable<int> Values { get; init; } = Enumerable.Empty<int>();
 }
 ```
+
+JSONコントラクトのカスタマイズについては下記ドキュメントが参考になります。
+- [カスタム シリアル化コントラクトと逆シリアル化コントラクト - .NET &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/custom-contracts)
