@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ".NET - System.Text.Jsonで空のコレクションのプロパティをシリアライズしない"
-date: 
+date: 2023-12-07
 tags: dotnet
 ---
 
