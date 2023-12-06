@@ -9,7 +9,7 @@ System.Text.Jsonを使っていて、空のコレクションを返すプロパ�
 
 シリアライズするクラスを編集できるのであれば、`JsonIgnoreCondition.WhenWritingNull`を使って実現します。編集できないクラスであれば、JSONコントラクトというメタデータ（`JsonTypeInfo`）を使って実現します。
 
-nullやデフォルト値の場合にシリアライズしない方法は、JsonIgnoreConditionを使うとあっさりできます。下記を参照ください。
+nullやデフォルト値の場合にシリアライズしない方法であれば、JsonIgnoreConditionを使うとあっさりできます。下記を参照ください。
 - [System.Text.Json でプロパティを無視する方法 - .NET &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/ignore-properties)
 - [JsonIgnoreCondition 列挙型 (System.Text.Json.Serialization) &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/api/system.text.json.serialization.jsonignorecondition)
 
@@ -78,11 +78,10 @@ public class Sample {
 
 ### シリアライズするクラスを編集できないとき
 
-コレクションのプロパティが空であれば`null`を返すという上記実装ができない場合、
+コレクションが空であれば`null`を返すプロパティという上記実装ができない場合、次にような実装で実現できます。
+
 1. `JsonSerializerOptions.DefaultIgnoreCondition`に`JsonIgnoreCondition.WhenWritingNull`を指定する
 2. JSONコントラクトというメタデータをカスタマイズして、コレクションが空なら`null`を返す
-
-という実装で実現できます。
 
 以下サンプルコードです。
 
