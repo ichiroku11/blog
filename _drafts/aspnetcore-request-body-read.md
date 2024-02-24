@@ -10,7 +10,7 @@ tags: aspnetcore
 コントローラーのアクション内で`HttpRequest.Body`からコンテンツを読み取れない場合があって調べた際に知りました。
 
 下記ドキュメントより引用します。
-[ASP.NET Core で HttpContext を使用する &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/aspnet/core/fundamentals/use-http-context?view=aspnetcore-7.0#enable-request-body-buffering)
+[ASP.NET Core で HttpContext を使用する &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/aspnet/core/fundamentals/use-http-context?view=aspnetcore-8.0#enable-request-body-buffering)
 
 ##### 日本語
 ```
@@ -28,81 +28,78 @@ Minimal APIとMVCそれぞれでコードを書いて1回のみ読み取れる�
 
 ### Minimal APIで動きを確認する
 
-// todo:
-リクエストボディを2回読み取るEndpointを定義します。
+Minimal APIでリクエストボディを2回読み取るEndpointを定義します。
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.UseRouting();
-app.UseEndpoints(endpoints => {
-	// HTTPボディを確認するEndpoint
-	endpoints.MapPost("/body", async context => {
-		// シークできるか
-		var canSeek = context.Request.Body.CanSeek;
+// HTTPボディを確認するEndpoint
+app.MapPost("/body", async context => {
+	// シークできるか
+	var canSeek = context.Request.Body.CanSeek;
 
-		// 1回目の読み取り
-		var first = await new StreamReader(context.Request.Body, leaveOpen: true).ReadToEndAsync();
+	// 1回目の読み取り
+	var first = await new StreamReader(context.Request.Body, leaveOpen: true).ReadToEndAsync();
 
-		// Positionを操作して巻き戻し
-		var thrown = false;
-		try {
-			context.Request.Body.Position = 0;
-		} catch (NotSupportedException) {
-			thrown = true;
-		}
+	// Positionを操作して巻き戻し
+	var thrown = false;
+	try {
+		context.Request.Body.Position = 0;
+	} catch (NotSupportedException) {
+		thrown = true;
+	}
 
-		// 2回目の読み取り
-		var second = await new StreamReader(context.Request.Body, leaveOpen: true).ReadToEndAsync();
+	// 2回目の読み取り
+	var second = await new StreamReader(context.Request.Body, leaveOpen: true).ReadToEndAsync();
 
-		// レスポンス
-		var json = JsonSerializer.Serialize(
-			new {
-				canSeek,
-				first,
-				second,
-				thrown
-			},
-			new JsonSerializerOptions {
-				DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
-				PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-				WriteIndented = true,
-			});
-		await context.Response.WriteAsync(json);
-	});
+	// レスポンス
+	var json = JsonSerializer.Serialize(
+		new {
+			canSeek,
+			first,
+			second,
+			thrown
+		},
+		new JsonSerializerOptions {
+			DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
+			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+			WriteIndented = true,
+		});
+	await context.Response.WriteAsync(json);
 });
 app.Run();
 ```
 
-// todo:
-このエンドポイントに対して
+このエンドポイントに対して適当なテキストをPOSTしてみると、
 
-```csharp
+### リクエスト
+```http
 POST https://localhost/body
 Content-Type: text/plain; charset=utf-8
 
 content
 ```
 
+次のようなJSONを取得できます。
+1回目のリクエストボディの読み取りはできていますが、その後のシークに失敗し、2回目の読み取りはできていません。
+
+##### レスポンスボディ
 ```json
 {
-  "canSeek": false,
-  "first": "content",
-  "second": "",
-  "thrown": true
+	"canSeek": false,
+	"first": "content",
+	"second": "",
+	"thrown": true
 }
 ```
 
-
 ### MVC（APIコントローラー）で動きを確認する
 
-下記のようなコントローラーを用意しました。
+次は下記のようなMVCのコントローラーを用意して確認しました。
 
-JsonWithBindアクションでは、モデルにバインドしている（すでにリクエストボディを読み取っている）のでアクション内でリクエストボディを読み取れません。
-一方、JsonWithoutBindアクションでは、モデルにバインドしていないのでアクション内でリクエストボディを読み取れました。
-
-```csharp
+```http
 public class RequestBodyController : ControllerBase {
 	// モデル
 	public class Sample {
@@ -130,7 +127,40 @@ public class RequestBodyController : ControllerBase {
 }
 ```
 
-### EnableBuffering
+JsonWithBindアクションに対してJSONをPOSTしてみると、
 
-// todo:
-リクエストボディを読み取る前に
+### リクエスト
+```http
+POST https://localhost/requestbody/jsonwithbind
+Content-Type: application/json; charset=utf-8;
+
+{"value":"abc"}
+```
+
+レスポンスは次のJSONが返ってきます。
+モデルにバインドしている（すでにリクエストボディを読み取っている）のでアクション内でリクエストボディを読み取れません。空文字にになります。
+
+##### レスポンスボディ
+```json
+{
+	"body": "",
+	"value": "abc"
+}
+```
+
+一方、JsonWithoutBindアクションでは、モデルにバインドしていないのでアクション内でリクエストボディを読み取れました。
+
+##### リクエスト
+```http
+POST https://localhost/requestbody/jsonwithoutbind
+Content-Type: application/json; charset=utf-8;
+
+{"value":"abc"}
+```
+
+##### レスポンスボディ
+```json
+{
+	"body": "{\"value\":\"abc\"}"
+}
+```
