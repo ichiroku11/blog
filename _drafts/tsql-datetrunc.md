@@ -40,7 +40,7 @@ group by datetrunc(hour, Timestamp);
 */
 ```
 
-また、DATETRUNC関数の1つ目の引数`datepart`に`year`、`month`、`day`、`hour`、`minute`を指定して確認してみた結果も残しておきます。
+また、DATETRUNC関数の1つ目の引数`datepart`に`year`、`month`、`day`、`hour`、`minute`を指定して、ある日時を切り詰めてみた結果も残しておきます。
 
 ```sql
 declare @date datetime2 = '2024-02-29 01:02:03';
