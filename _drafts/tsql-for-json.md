@@ -22,8 +22,7 @@ drop table if exists #Temp;
 select *
 into #Temp
 from (values
-    (1, 'a', 9),
-    (2, 'b', null)
+    (1, 'a', null)
 ) as Temp(X, Y, Z);
 
 select *
@@ -31,8 +30,7 @@ from #Temp;
 /*
 X           Y    Z
 ----------- ---- -----------
-1           a    9
-2           b    NULL
+1           a    NULL
 */
 ```
 
@@ -43,55 +41,28 @@ X           Y    Z
 `AUTO`モードでは、カラム名が出力されるプロパティ名になります。`.`を含むカラム名でも入れ子になったオブジェクトにはなりません。
 一方、`PATH`モードでは、`.`区切りのカラム名を指定すると入れ子になったオブジェクトとして出力できます。
 
-結果の違いを確認してみましょう。実際のクエリ結果は、JSON内の余分な空白がない状態で出力されますが、以降のJSON形式はすべて見やすいように整形しています。
+結果の違いを確認してみましょう。実際のクエリ結果にはカラム名が入りますが、カラム名を省略してJSONだけにしています。また、JSON文字列も余分な空白がない状態で出力されますが、以降のJSON形式はすべて見やすいように整形しています。
 
 ```sql
 -- AUTOモード
 select
     X,
-    Y as 'detail.y',
-    Z as 'detail.z'
+    Y as 'detail.y'
 from #Temp
 for json auto;
 /*
-[
-    {
-        "X": 1,
-        "detail.y": "a",
-        "detail.z": 9
-    },
-    {
-        "X": 2,
-        "detail.y": "b"
-    }
-]
+// todo:
 */
 
 -- PATHモード
 -- 入れ子になったオブジェクトとして出力される
 select
     X,
-    Y as 'detail.y',
-    Y as 'detail.z'
+    Y as 'detail.y'
 from #Temp
 for json path;
 /*
-[
-    {
-        "X": 1,
-        "detail": {
-            "y": "a",
-            "z": "a"
-        }
-    },
-    {
-        "X": 2,
-        "detail": {
-            "y": "b",
-            "z": "b"
-        }
-    }
-]
+// todo:
 */
 ```
 
@@ -105,102 +76,76 @@ for json path;
 -- ROOTオプションなし
 select
     X as x,
-    Y as y,
-    Z as z
+    Y as y
 from #Temp
 for json path;
 /*
-[
-    {
-        "x": 1,
-        "y": "a",
-        "z": 9
-    },
-    {
-        "x": 2,
-        "y": "b"
-    }
-]
+// todo:
 */
 
 -- ROOTオプションあり
 -- "items"プロパティを持つオブジェクトとして出力される
 select
     X as x,
-    Y as y,
-    Z as z
+    Y as y
 from #Temp
 for json path, root('items');
 /*
-{
-    "items": [
-        {
-            "x": 1,
-            "y": "a",
-            "z": 9
-        },
-        {
-            "x": 2,
-            "y": "b"
-        }
-    ]
-}
+// todo:
 */
 ```
 
 ### INCLUDE_NULL_VALUESオプション
 
+名前の通りですね。`NULL`を出力したい場合に指定するオプションです。
+
 ```sql
--- INCLUDE_NULL_VALUESオプション
+-- INCLUDE_NULL_VALUESオプションなし
 select
-    X as x,
-    Y as y,
     Z as z
 from #Temp
 for json path;
 /*
-[{"x":1,"y":"a","z":9},{"x":2,"y":"b"}]
+// todo:
 */
 
+-- INCLUDE_NULL_VALUESオプションあり
 select
-    X as x,
-    Y as y,
     Z as z
 from #Temp
 for json path, include_null_values;
 /*
-[{"x":1,"y":"a","z":9},{"x":2,"y":"b","z":null}]
+// todo:
 */
 ```
 
 ### WITHOUT_ARRAY_WRAPPERオプション
 
+// todo:
+
 ```sql
 -- WITHOUT_ARRAY_WRAPPERオプション
 select
-    X as x,
-    Y as y,
-    Z as z
+    X as x
 from #Temp
 for json path;
 /*
-[{"x":1,"y":"a","z":9},{"x":2,"y":"b"}]
+// todo:
 */
 
 select
-    X as x,
-    Y as y,
-    Z as z
+    X as x
 from #Temp
 for json path, without_array_wrapper;
 /*
-{"x":1,"y":"a","z":9},{"x":2,"y":"b"}
+// todo:
 */
+```
 
-select
-    X as x,
-    Y as y,
-    Z as z
+// todo:
+
+```sql
+select *
 from #Temp
 for json path, root('items'), without_array_wrapper;
 -- エラー
