@@ -34,6 +34,26 @@ X           Y    Z
 */
 ```
 
+`FOR JSON`句を使ってクエリを実行してみると、JSON文字列を1レコードの結果セットとして取得できます。
+JSON文字列は配列になります。
+
+実際の結果セットにはカラム名が入りますが、以降ではカラム名を省略してJSON文字列だけを表示しています。
+また、JSON文字列も余分な空白がない状態で出力されますが、すべて見やすいように整形しています。
+
+```sql
+select *
+from #Temp
+for json auto;
+/*
+[
+    {
+        "X": 1,
+        "Y": "a"
+    }
+]
+*/
+```
+
 ### AUTOモードとPATHモードの違い
 
 `FOR JSON`句では`AUTO`モードか`PATH`モードを指定します。
@@ -41,7 +61,7 @@ X           Y    Z
 `AUTO`モードでは、カラム名が出力されるプロパティ名になります。`.`を含むカラム名でも入れ子になったオブジェクトにはなりません。
 一方、`PATH`モードでは、`.`区切りのカラム名を指定すると入れ子になったオブジェクトとして出力できます。
 
-結果の違いを確認してみましょう。実際のクエリ結果にはカラム名が入りますが、カラム名を省略してJSONだけにしています。また、JSON文字列も余分な空白がない状態で出力されますが、以降のJSON形式はすべて見やすいように整形しています。
+結果の違いを確認してみましょう。
 
 ```sql
 -- AUTOモード
@@ -51,7 +71,12 @@ select
 from #Temp
 for json auto;
 /*
-// todo:
+[
+    {
+        "X": 1,
+        "detail.y": "a"
+    }
+]
 */
 
 -- PATHモード
@@ -62,7 +87,14 @@ select
 from #Temp
 for json path;
 /*
-// todo:
+[
+    {
+        "X": 1,
+        "detail": {
+            "y": "a"
+        }
+    }
+]
 */
 ```
 
@@ -70,19 +102,7 @@ for json path;
 
 `ROOT`オプションを指定すると、引数に指定したプロパティ名を持つオブジェクトとして出力できます。
 
-`ROOT`オプションの有無で結果の違いを確認してみましょう。
-
 ```sql
--- ROOTオプションなし
-select
-    X as x,
-    Y as y
-from #Temp
-for json path;
-/*
-// todo:
-*/
-
 -- ROOTオプションあり
 -- "items"プロパティを持つオブジェクトとして出力される
 select
@@ -91,7 +111,14 @@ select
 from #Temp
 for json path, root('items');
 /*
-// todo:
+{
+    "items": [
+        {
+            "x": 1,
+            "y": "a"
+        }
+    ]
+}
 */
 ```
 
@@ -100,49 +127,36 @@ for json path, root('items');
 名前の通りですね。`NULL`を出力したい場合に指定するオプションです。
 
 ```sql
--- INCLUDE_NULL_VALUESオプションなし
-select
-    Z as z
-from #Temp
-for json path;
-/*
-// todo:
-*/
-
 -- INCLUDE_NULL_VALUESオプションあり
-select
-    Z as z
+select Z as z
 from #Temp
 for json path, include_null_values;
 /*
-// todo:
+[
+    {
+        "z": null
+    }
+]
 */
 ```
 
 ### WITHOUT_ARRAY_WRAPPERオプション
 
-// todo:
+配列として出力しないオプションです。
+配列内の要素が複数でもカンマ区切りとして出力されてJSONとして正しくない気がするので、配列の要素が1つのときに使うのかも？
 
 ```sql
--- WITHOUT_ARRAY_WRAPPERオプション
-select
-    X as x
-from #Temp
-for json path;
-/*
-// todo:
-*/
-
-select
-    X as x
+select X as x
 from #Temp
 for json path, without_array_wrapper;
 /*
-// todo:
+{
+    "x": 1
+}
 */
 ```
 
-// todo:
+`ROOT`オプションと`WITHOUT_ARRAY_WRAPPER`オプションどちらも指定するとエラーになります。
 
 ```sql
 select *
