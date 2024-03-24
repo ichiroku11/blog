@@ -9,10 +9,10 @@ tags: t-sql
 
 試してみたのはこのあたり。
 
-- [`AUTO`モードと`PATH`モードの違い](#AUTOモードとPATHモードの違い)
-- [`ROOT`オプション](#ROOTオプション)
-- [`INCLUDE_NULL_VALUES`オプション](#INCLUDE_NULL_VALUESオプション)
-- [`WITHOUT_ARRAY_WRAPPER`オプション](#WITHOUT_ARRAY_WRAPPERオプション)
+- [`AUTO`モードと`PATH`モードの違い](#autoモードとpathモードの違い)
+- [`ROOT`オプション](#rootオプション)
+- [`INCLUDE_NULL_VALUES`オプション](#include_null_valuesオプション)
+- [`WITHOUT_ARRAY_WRAPPER`オプション](#without_array_wrapperオプション)
 
 まずはテスト用のデータです。
 
@@ -34,11 +34,10 @@ X           Y    Z
 */
 ```
 
-`FOR JSON`句を使ってクエリを実行してみると、JSON文字列を1レコードの結果セットとして取得できます。
-JSON文字列は配列になります。
+`FOR JSON`句を使ってクエリを実行すると、JSON文字列を1レコードの結果セットとして取得できます。JSON文字列は配列です。
+また、実際の結果セットにはカラム名が入り、JSON文字列も余分な空白がない状態で出力されます。
 
-実際の結果セットにはカラム名が入りますが、以降ではカラム名を省略してJSON文字列だけを表示しています。
-また、JSON文字列も余分な空白がない状態で出力されますが、すべて見やすいように整形しています。
+以降ではカラム名を省略して、すべて見やすいように整形したJSON文字列を表示しています。
 
 ```sql
 select *
@@ -124,7 +123,7 @@ for json path, root('items');
 
 ### INCLUDE_NULL_VALUESオプション
 
-名前の通りですね。`NULL`を出力したい場合に指定するオプションです。
+オプション名の通りですね。`NULL`を出力したい場合に指定するオプションです。
 
 ```sql
 -- INCLUDE_NULL_VALUESオプションあり
