@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "T-SQL - FOR JSON句を使って結果をJSON形式で出力する"
-date: 
+date: 2024-03-24
 tags: t-sql
 ---
 
@@ -9,10 +9,10 @@ tags: t-sql
 
 試してみたのはこのあたり。
 
-- `AUTO`モードと`PATH`モードの違い
-- `ROOT`オプション
-- `INCLUDE_NULL_VALUES`オプション
-- `WITHOUT_ARRAY_WRAPPER`オプション
+- [`AUTO`モードと`PATH`モードの違い](#AUTOモードとPATHモードの違い)
+- [`ROOT`オプション](#ROOTオプション)
+- [`INCLUDE_NULL_VALUES`オプション](#INCLUDE_NULL_VALUESオプション)
+- [`WITHOUT_ARRAY_WRAPPER`オプション](#WITHOUT_ARRAY_WRAPPERオプション)
 
 まずはテスト用のデータです。
 
