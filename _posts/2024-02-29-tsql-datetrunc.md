@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "T-SQL - DATETRUNC関数を使ってグルーピングする"
+title: "T-SQL - DATETRUNC関数を使って日付や時間ごとにグルーピングする"
 date: 2024-02-29
 tags: t-sql
 ---
