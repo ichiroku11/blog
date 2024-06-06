@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "T-SQL - ISJSON関数を確認する"
-date: 
-tags: t-sql
+date: 2024-06-07
+tags: t-sql json
 ---
 
 引数に渡された値がJSON文字列かどうかチェックできるISJSON関数を見つけたので、実行結果を確認したいと思います。
