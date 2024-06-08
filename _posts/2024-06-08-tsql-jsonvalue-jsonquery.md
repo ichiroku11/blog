@@ -56,5 +56,6 @@ boolean     number      string      null        object      array
 ----------- ----------- ----------- ----------- ----------- -----------
 NULL        NULL        NULL        NULL        {}          []
 */
+```
 
 JSON内の`null`は`JSON_VALUE`関数、`JSON_QUERY`関数どちらもでNULLになります。
