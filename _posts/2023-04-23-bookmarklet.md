@@ -7,6 +7,15 @@ tags: bookmarklet javascript
 
 使っているブックマークレットのメモ。
 
+### 現在開いているページのURLをマークダウンで利用できる形にしてクリップボードにコピー
+
+2024-06-08に追加。
+
+```js
+javascript:(async()=>{const text=`[${document.title.replaceAll("|","&#124;")}](${document.URL})`;await navigator.clipboard.writeText(text);})();
+```
+
+
 ### 現在開いているページのタイトルを表示する
 
 ```js
