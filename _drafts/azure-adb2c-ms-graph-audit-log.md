@@ -23,7 +23,33 @@ Azure AD B2Cにおいて、ユーザーがサインインしたアプリケー�
 - Graph APIでログを取得する
 - Log Anlyticsにログを転送する
 
-今回はGraph APIを使ってログを取得したいと思います。
+今回はC#、Graph APIを使ってログを取得したいと思います。
+
+// todo: アクセス許可が必要
 
 // todo:
 
+```csharp
+// クレデンシャル
+var credential = new ClientSecretCredential(
+    tenantId: "{テナントID}",
+    clientId: "{クライアントID}",
+    clientSecret: "{クライアントシークレット}",
+    options: new TokenCredentialOptions {
+        AuthorityHost = AzureAuthorityHosts.AzurePublicCloud,
+    });
+
+// スコープ
+var scopes = new[] { "https://graph.microsoft.com/.default" };
+
+var authenticationProvider = new AzureIdentityAuthenticationProvider(credential: credential, scopes: scopes);
+
+var client = new GraphServiceClient(authenticationProvider);
+
+var response = await client.AuditLogs.DirectoryAudits.GetAsync(config => {
+    // 「IDトークンの発行」=「サインイン」と判断する
+    config.QueryParameters.Filter = "activityDisplayName eq 'Issue an id_token to the application'";
+});
+
+
+```
