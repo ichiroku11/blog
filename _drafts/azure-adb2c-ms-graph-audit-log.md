@@ -23,7 +23,7 @@ Azure AD B2Cにおいて、ユーザーがサインインしたアプリケー�
 - Graph APIでログを取得する
 - Log Anlyticsにログを転送する
 
-今回はC#、Graph APIを使ってログを取得したいと思います。
+今回はGraph API（C#）を使ってログを取得したいと思います。
 
 // todo: アクセス許可が必要
 
@@ -43,7 +43,6 @@ var credential = new ClientSecretCredential(
 var scopes = new[] { "https://graph.microsoft.com/.default" };
 
 var authenticationProvider = new AzureIdentityAuthenticationProvider(credential: credential, scopes: scopes);
-
 var client = new GraphServiceClient(authenticationProvider);
 
 var response = await client.AuditLogs.DirectoryAudits.GetAsync(config => {
@@ -51,5 +50,23 @@ var response = await client.AuditLogs.DirectoryAudits.GetAsync(config => {
     config.QueryParameters.Filter = "activityDisplayName eq 'Issue an id_token to the application'";
 });
 
-
+foreach (var audit in response?.Value ?? []) {
+    var json = JsonSerializer.Serialize(new {
+        // アクティビティが実行された日時（UTC）
+        // サインイン日時とする
+        audit.ActivityDateTime,
+        // アクティビティ名：'Issue an id_token to the application'
+        audit.ActivityDisplayName,
+        // アクティビティの結果
+        audit.Result,
+        // アクティビティを開始したアプリケーション
+        // サインインしたアプリケーションのクライアントID
+        audit.InitiatedBy?.App?.ServicePrincipalName,
+        // ターゲットリソース
+        // サインインしたユーザーのID
+        // たぶん1つなんだろうけどコレクションなので配列として出力
+        objectIds = audit.TargetResources?.Select(resource => resource.Id),
+    });
+    Console.WriteLine(json);
+}
 ```
