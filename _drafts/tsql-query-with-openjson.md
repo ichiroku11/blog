@@ -18,7 +18,7 @@ drop table if exists dbo.TodoItem;
 create table dbo.TodoItem(
     Id int not null,
     Title nvarchar(10) not null,
-    Tags nvarchar(20) not null,
+    Tags nvarchar(max) not null,
     constraint PK_Blog primary key(Id)
 );
 insert into dbo.TodoItem(Id, Title, Tags)
@@ -28,45 +28,62 @@ values
     (2, N'todo-2', N'["tag-b"]'),
     (3, N'todo-3', N'["tag-a","tag-c"]');
 /*
-// todo:
+Id	Title	Tags
+1	todo-1	["tag-a","tag-b"]
+2	todo-2	["tag-b"]
+3	todo-3	["tag-a","tag-c"]
 */
 ```
 
-あるタグを含んでいるレコードを取得するには、次のクエリを実行します。
+今回はタグ`tag-a`を含んでいるレコードを取得してみたいと思います。
+
+クエリは次のような感じ。
 
 ```sql
--- tag-aを含んでいるレコードを取得
 select *
 from dbo.TodoItem
 where exists (
     select Tag
-    from openjson(Tags) with(Tag nvarchar(20) N'$')
-    where Tag = N'tag-a'
-);
+    from openjson(Tags) with(Tag nvarchar(max) N'$')
+    where Tag = N'tag-a');
 /*
-// todo:
+Id	Title	Tags
+1	todo-1	["tag-a","tag-b"]
+3	todo-3	["tag-a","tag-c"]
 */
 ```
 
-// todo: 別解
+別解。
+個人的には、条件をIN句の左辺に持ってくるのがわかりやすいのかどうか疑問。
+ちなみにEF Core 8で`Contains`を使ったら出力されたクエリです。
 
 ```sql
 select *
 from dbo.TodoItem
 where N'tag-a' in (
     select Tag
-    from openjson(Tags) with(Tag nvarchar(20) N'$')
+    from openjson(Tags) with(Tag nvarchar(max) N'$')
+);
 /*
-// todo:
+Id	Title	Tags
+1	todo-1	["tag-a","tag-b"]
+3	todo-3	["tag-a","tag-c"]
 */
 );
 ```
 
-// todo: 別解
+もう1つ別解。`CROSS APPLY`と`OPENJSON`を組み合わせるやり方ですね。
 
 ```sql
--- Tagsをレコードに展開
 select *
 from dbo.TodoItem
-cross apply openjson(Tags) with(Tag nvarchar(20) N'$');
+    cross apply openjson(Tags) with(Tag nvarchar(max) N'$')
+where Tag = N'tag-a';
+/*
+Id	Title	Tags	Tag
+1	todo-1	["tag-a","tag-b"]	tag-a
+3	todo-3	["tag-a","tag-c"]	tag-a
+*/
 ```
+
+なんとなく1つ目がわかりやすいのかなと思います。
