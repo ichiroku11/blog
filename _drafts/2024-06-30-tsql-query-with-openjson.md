@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "T-SQL - OPENJSONを使ってJSON文字列カラム内の値を条件に取得する"
-date: 
+date: 2024-06-30
 tags: t-sql
 ---
 
@@ -11,7 +11,7 @@ OPENJSON関数はJOSN文字列をパースしてテーブルを返します。�
 
 [OPENJSON (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/t-sql/functions/openjson-transact-sql?view=sql-server-ver16)
 
-まずはサンプル用のテーブルとデータ。TODOのTagsカラムに配列のJSON文字列が入っています。
+まずはサンプル用のテーブルとデータから。dbo.TodoItemテーブルのTagsカラムに配列のJSON文字列が入っています。
 
 ```sql
 drop table if exists dbo.TodoItem;
@@ -37,6 +37,8 @@ Id	Title	Tags
 
 今回はタグ`tag-a`を含んでいるレコードを取得してみたいと思います。
 
+### クエリ1
+
 クエリは次のような感じ。
 
 ```sql
@@ -53,9 +55,11 @@ Id	Title	Tags
 */
 ```
 
+### クエリ2
+
 別解。
-個人的には、条件をIN句の左辺に持ってくるのがわかりやすいのかどうか疑問。
-ちなみにEF Core 8で`Contains`を使ったら出力されたクエリです。
+個人的には、条件をIN句の左辺に持ってくるのがわかりやすいのかどうかちょっと疑問。
+ちなみにEF Core 8で`Contains`メソッドを使ったら出力されたクエリはこんな感じです。
 
 ```sql
 select *
@@ -72,6 +76,8 @@ Id	Title	Tags
 );
 ```
 
+### クエリ3
+
 もう1つ別解。`CROSS APPLY`と`OPENJSON`を組み合わせるやり方ですね。
 
 ```sql
@@ -86,4 +92,4 @@ Id	Title	Tags	Tag
 */
 ```
 
-なんとなく1つ目がわかりやすいのかなと思います。
+なんとなく1つ目のクエリがわかりやすいのかなと思います。
