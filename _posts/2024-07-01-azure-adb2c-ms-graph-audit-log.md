@@ -9,9 +9,9 @@ Azure AD B2Cにおいて、ユーザーがサインインしたアプリケー�
 
 [監査ログへのアクセスと確認 - Azure AD B2C &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/active-directory-b2c/view-audit-logs)
 
-アクティビティを`Issue an id_token to the application`とフィルターすればOKのようです。
+Azureポータルでは、アクティビティを`Issue an id_token to the application`とフィルターすればOKのようです。
 
-[Microsoft Entra audit log activity reference - Microsoft Entra ID &#124; Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-audit-activities)
+[Microsoft Entra audit log activity reference - Microsoft Entra ID &#124; Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-audit-activities#b2c)
 
 |Audit Category|Activity|
 |--|--|
