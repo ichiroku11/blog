@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure AD B2C - Graph APIを使って監査ログからユーザーがサインインしたアプリケーション（クライアント）と日時を取得する"
-date:
+date: 2024-07-01
 tags: azure-ad-b2c ms-graph
 ---
 
