@@ -53,3 +53,9 @@ foreach (var user in response?.Value ?? []) {
     Console.WriteLine(json);
 }
 ```
+
+`signInActivity`を取得するには、`AuditLog.Read.All`のアクセス許可が必要とのことです。
+
+下記ドキュメントの例11にもリクエストとレスポンスのサンプルがありました。
+
+[ユーザーを一覧表示する - Microsoft Graph v1.0 &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/graph/api/user-list?view=graph-rest-1.0&tabs=csharp#example-11-get-users-including-their-last-sign-in-time)
