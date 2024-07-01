@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure AD B2C - Graph APIを使って最後に成功したサインイン日時（lastSuccessfulSignInDateTime）を取得する"
-date:
+date: 2024-07-02
 tags: azure-ad-b2c ms-graph
 ---
 
