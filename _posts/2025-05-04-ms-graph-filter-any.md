@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Microsoft Graphのフィルターで使うany演算子の書き方のメモ"
-date:
+date: 2025-05-04
 tags: ms-graph
 ---
 
