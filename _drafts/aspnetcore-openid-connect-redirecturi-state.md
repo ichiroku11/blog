@@ -5,9 +5,11 @@ date:
 tags: aspnetcore openid-connect
 ---
 
-ASP.NET CoreでOpenID Connectによるログインを実装するときのお話。
+ASP.NET CoreでOpenID Connectによるログインを実装して、IdPでログインした後、任意のURLにリダイレクトしたいときのお話です。
 
-IdPでログインした後のリダイレクト先を指定したい場合、`AuthenticationProperties.RedirectUri`プロパティを利用すると思います。次のようなコードですね。
+Authentication Requestの`redirect_uri`パラメーターで指定するURLはIdPに事前に登録する必要があるため、
+IdPでログインした後の任意のURLにリダイレクトしたい場合、`AuthenticationProperties.RedirectUri`プロパティを利用すると思います。
+次のようなコードですね。
 
 ```cs
 public IActionResult SignIn() {
@@ -20,18 +22,19 @@ public IActionResult SignIn() {
 }
 ```
 
-Authentication Requestの`redirect_uri`はIdPに事前に登録する必要があるので、任意のURLにリダイレクトさせるには`AuthenticationProperties.RedirectUri`を利用することが多いのかなと思います。
-
-実際には
-1. Authentication Requestの`redirect_uri`で指定したURLにリダイレクト
+このときログイン後の動きとしては、
+1. Authentication Requestの`redirect_uri`で指定したURL（IdPに登録したコールバックURL）にリダイレクト
 2. `AuthenticationProperties.RedirectUri`プロパティで指定したURLにリダイレクト
 と2回リダイレクトが発生します。
 
+`AuthenticationProperties.RedirectUri`で指定されたURLは、`redirect_uri`パラメーターには含まれないのですが、
+どうしているかというと`state`パラメーターにシリアライズされてIdPに渡されて、リダイレクト後のコールバックで返されます。
 
-// todo:
+
+
+
+
 /*
-`AuthenticationProperties.RedirectUri`
-
 [Final: OpenID Connect Core 1.0 incorporating errata set 2](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)
 
 https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectHandler.cs#L480
