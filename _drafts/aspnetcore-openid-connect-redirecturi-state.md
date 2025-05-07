@@ -27,10 +27,10 @@ public IActionResult SignIn() {
 ```
 
 `AuthenticationProperties.RedirectUri`で指定されたURLは、`redirect_uri`パラメーターには含まれないのですが、
-どうしているかというと`state`パラメーターにシリアライズされてIdPに渡されて、リダイレクト後のコールバックで返されます。
-といったあたりをコードから確認してみたいと思います。
+どうやって覚えているかというと`state`パラメーターにシリアライズされIdPに渡されて、リダイレクト後のコールバックで返されます。
+`state`パラメーターにシリアライズされている部分のコードを確認してみたいと思います。
 
-IdPへのリダイレクトを処理している`OpenIdConnectHandler.HandleChallengeAsyncInternal`メソッドで、
+まず、IdPへのリダイレクトを処理している`OpenIdConnectHandler.HandleChallengeAsyncInternal`メソッドで、
 `AuthenticationProperties`の値を何かしら保護（加工）して`state`パラメーターに設定してます。
 
 [aspnetcore/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectHandler.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectHandler.cs#L480)
@@ -39,18 +39,33 @@ IdPへのリダイレクトを処理している`OpenIdConnectHandler.HandleChal
 message.State = Options.StateDataFormat.Protect(properties);
 ```
 
-// todo:
+次に、`OpenIdConnectOptions.StateDataFOrmat`プロパティを確認すると、`ISecureDataFormat<AuthenticationProperties>`という型になっていることがわかります。
 
 [aspnetcore/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectOptions.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectOptions.cs#L263)
 
 ```cs
+public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; } = default!;
 ```
 
-// todo:
+このインターフェイスは`SecureDataFormat<TData>`で実装されているようです。
+`SecureDataFormat.Protect`メソッドは、TData型のデータをシリアライズして暗号化するメソッドです。
 
 [aspnetcore/src/Security/Authentication/Core/src/SecureDataFormat.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/Core/src/SecureDataFormat.cs#L35-L47)
 
 ```cs
+public string Protect(TData data, string? purpose)
+{
+    var userData = _serializer.Serialize(data);
+
+    var protector = _protector;
+    if (!string.IsNullOrEmpty(purpose))
+    {
+        protector = protector.CreateProtector(purpose);
+    }
+
+    var protectedData = protector.Protect(userData);
+    return Base64UrlTextEncoder.Encode(protectedData);
+}
 ```
 
 
