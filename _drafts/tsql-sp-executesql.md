@@ -22,16 +22,26 @@ Executes commands that return rows. For increased performance, ExecuteReader inv
 
 ## パラメーターを1つ渡す
 
+パラメーターを1つ渡す場合は次のようにします。それぞれの引数は次のような意味です。
+1. SQL文（文字列）
+2. パラメーター名＋型（文字列）
+3. パラメーターの値（文字列）
+
 ```sql
 execute sp_executesql
     N'select @p as value',
     N'@p int',
     '1';
 
--- todo: 実行結果
+-- 実行結果
+/*
+Value
+1
+*/
 ```
 
-パラメーター名を指定すると
+パラメーター名を指定する場合は以下のようになります。
+パラメーターの値は、`@p`のようにSQL文内に埋め込むパラメーター名を指定します。
 
 ```sql
 -- パラメーター名を指定する
@@ -39,11 +49,12 @@ execute sp_executesql
     @stmt = N'select @p as Value',
     @params = N'@p int',
     @p = '1';
-
--- todo: 実行結果
 ```
 
 ## パラメーターを2つ（複数）渡す
+
+パラメーターを2つ渡す場合です。
+パラメーターの型を指定（`@params`）では、`@p1 int, @p2 int`のようにカンマ区切りで複数のパラメーターを指定します。
 
 ```sql
 execute sp_executesql
@@ -51,7 +62,12 @@ execute sp_executesql
     N'@p1 int, @p2 int',
     '1',
     '2';
--- todo: 実行結果
+
+-- 実行結果
+/*
+Value1	Value2
+1	2
+*/
 
 -- パラメーター名を指定する
 execute sp_executesql
@@ -59,7 +75,6 @@ execute sp_executesql
     @params = N'@p1 int, @p2 int',
     @p1 = '1',
     @p2 = '2';
--- todo: 実行結果
 ```
 
 ## OUTPUTパラメーターを使う
