@@ -9,14 +9,14 @@ EF CoreやADO.NETでは、パラメーターがあるSELECT文などを実行す
 
 [SqlCommand Class (Microsoft.Data.SqlClient) &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/api/microsoft.data.sqlclient.sqlcommand#remarks)
 
-Remarksの表にある`ExecuteReader`の説明は次のようにあります。
+Remarksの表にある`ExecuteReader`の説明には次のようにあります。
 ```
 Executes commands that return rows. For increased performance, ExecuteReader invokes commands using the Transact-SQL sp_executesql system stored procedure. Therefore, ExecuteReader might not have the effect that you want if used to execute commands such as Transact-SQL SET statements.
 
 行を返すコマンドを実行します。パフォーマンスを向上させるために、ExecuteReaderはTransact-SQLのsp_executesqlシステムストアドプロシージャを使用してコマンドを呼び出します。したがって、Transact-SQLのSET文などのコマンドを実行するためにExecuteReaderを使用すると、期待する効果が得られない場合があります。
 ```
 
-`sp_executesql`についてはそういえば手が書いて実行したことがないなと思ったので、`sp_executesql`を使ったクエリの実行を確認してみました。
+そういえば`sp_executesql`は手が書いて実行したことがないなと思ったので、`sp_executesql`を使ったクエリを確認してみました。
 
 [sp_executesql (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql)
 
@@ -77,10 +77,25 @@ execute sp_executesql
     @p2 = '2';
 ```
 
-## OUTPUTパラメーターを使う
+## OUT、OUTPUTパラメーターを使う
 
-// todo:
+OUT、OUTPUTパラメーターを使う場合は、次のように指定します。どうも`out`のキーワードを2カ所指定する必要があるようです。
 
+```sql
+declare @p int;
+
+execute sp_executesql
+    N'select @p = 1',
+    N'@p int out',
+    @p out;
+
+select @p as Value;
+-- 実行結果
+/*
+Value
+1
+*/
+```
 
 ## 変数を使ってストアドプロシージャを呼び出す
 
