@@ -40,7 +40,7 @@ Value
 */
 ```
 
-パラメーター名を指定する場合は以下のようになります。
+引数のパラメーター名を指定する場合は以下のようになります。
 パラメーターの値は、`@p`のようにSQL文内に埋め込むパラメーター名を指定します。
 
 ```sql
@@ -99,4 +99,22 @@ Value
 
 ## 変数を使ってストアドプロシージャを呼び出す
 
-// todo:
+`sp_executesql`の引数は文字列なので、SQL文やパラメーターを文字列変数に格納して実行することもできます。
+
+```sql
+declare @statement nvarchar(50) = N'select @p as Value';
+declare @parameters nvarchar(50) = N'@p int';
+declare @value varchar(50) = '1';
+
+execute sp_executesql
+    @statement,
+    @parameters,
+    @value;
+-- 実行結果
+/*
+Value
+1
+*/
+```
+
+`sp_executesql`を使ってみましたというお話でした。
