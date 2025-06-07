@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ASP.NET Core - AuthenticationProperties.RedirectUriはstateパラメーターにシリアライズされる"
-date: 
+date: 2025-06-07
 tags: aspnetcore openid-connect
 ---
 
