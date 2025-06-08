@@ -11,9 +11,9 @@ EF CoreやADO.NETでは、パラメーターがあるSELECT文などを実行す
 
 Remarksの表にある`ExecuteReader`の説明には次のようにあります。
 ```
-Executes commands that return rows. For increased performance, ExecuteReader invokes commands using the Transact-SQL sp_executesql system stored procedure. Therefore, ExecuteReader might not have the effect that you want if used to execute commands such as Transact-SQL SET statements.
+Executes commands that return rows. For increased performance, ExecuteReader invokes commands using the Transact-SQL sp_executesql system stored procedure. 
 
-行を返すコマンドを実行します。パフォーマンスを向上させるために、ExecuteReaderはTransact-SQLのsp_executesqlシステムストアドプロシージャを使用してコマンドを呼び出します。したがって、Transact-SQLのSET文などのコマンドを実行するためにExecuteReaderを使用すると、期待する効果が得られない場合があります。
+行を返すコマンドを実行します。パフォーマンスを向上させるために、ExecuteReaderはTransact-SQLのsp_executesqlシステムストアドプロシージャを使用してコマンドを呼び出します。
 ```
 
 そういえば`sp_executesql`は手が書いて実行したことがないなと思ったので、`sp_executesql`を使ったクエリを確認してみました。
@@ -22,15 +22,15 @@ Executes commands that return rows. For increased performance, ExecuteReader inv
 
 ## パラメーターを1つ渡す
 
-パラメーターを1つ渡す場合は次のようにします。それぞれの引数は次のような意味です。
-1. SQL文（文字列）
-2. パラメーター名＋型（文字列）
-3. パラメーターの値（文字列）
+パラメーターを1つ渡す場合は次のようにします。
 
 ```sql
 execute sp_executesql
+    -- SQL文
     N'select @p as value',
+    -- パラメーター名＋型
     N'@p int',
+    -- パラメーターの値
     '1';
 
 -- 実行結果
