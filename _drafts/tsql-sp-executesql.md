@@ -44,7 +44,7 @@ Value
 パラメーターの値は、`@p`のようにSQL文内に埋め込むパラメーター名を指定します。
 
 ```sql
--- パラメーター名を指定する
+-- パラメーター名を指定する場合
 execute sp_executesql
     @stmt = N'select @p as Value',
     @params = N'@p int',
@@ -69,7 +69,7 @@ Value1	Value2
 1	2
 */
 
--- パラメーター名を指定する
+-- パラメーター名を指定する場合
 execute sp_executesql
     @stmt = N'select @p1 as Value1, @p2 as Value2',
     @params = N'@p1 int, @p2 int',
