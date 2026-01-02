@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "T-SQL - sp_executesqlを使ったクエリの実行を確認する"
-date: 
+date: 2026-01-02
 tags: t-sql
 ---
 
