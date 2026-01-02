@@ -1,24 +1,22 @@
 google_analytics: G-BKTC9CNL0Y
 paginate: 10
-remote_theme: jekyll/minima
+theme: minima
 timezone: Asia/Tokyo
 title: いちろぐ
 
 # https://github.com/jekyll/minima
 minima:
   date_format: "%Y-%m-%d"
-  skin: dark
+  skin: auto
   social_links:
-    - { platform: github, user_url: "https://github.com/ichiroku11" }
-    - { platform: twitter, user_url: "https://twitter.com/ichiroku11" }
+    - title: ichiroku11 repository at GitHub
+      icon: github
+      url: "https://github.com/ichiroku11"
+    - title: ichiroku11 at X (formerly Twitter)
+      icon: x-twitter
+      url: "https://x.com/ichiroku11"
 
 plugins:
-  # feed.xml
-  # https://github.com/jekyll/jekyll-feed
-  - jekyll-feed
-  # metadata
-  # https://github.com/jekyll/jekyll-seo-tag
-  - jekyll-seo-tag
   # sitemap.xml
   # https://github.com/jekyll/jekyll-sitemap
   - jekyll-sitemap
