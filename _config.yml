@@ -1,6 +1,6 @@
 google_analytics: G-BKTC9CNL0Y
 paginate: 10
-theme: minima
+remote_theme: jekyll/minima
 timezone: Asia/Tokyo
 title: いちろぐ
 
