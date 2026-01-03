@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Azure AD B2C - OIDCのprompt=noneに対応しているみたい"
-date: 
+date: 2026-01-03
 tags: azure-ad-b2c
 ---
 
