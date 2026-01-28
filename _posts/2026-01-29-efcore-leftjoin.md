@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "EF Core - LefJoinメソッドで外部結合（leff outer join）する"
-date: 
+date: 2026-01-29
 tags: efcore t-sql
 ---
 
@@ -14,6 +14,8 @@ EF CoreでLefJoinメソッドを使って外部結合できるようになった
 取得したいサンプルデータです。以前と同じデータ。OuterとInnerを外部結合したいとします。
 
 ```sql
+use Test;
+
 drop table if exists dbo.[Outer];
 drop table if exists dbo.[Inner];
 
@@ -153,4 +155,4 @@ public class AppDbContext : DbContext {
 
 ### 参考
 
-- https://learn.microsoft.com/ja-jp/ef/core/what-is-new/ef-core-10.0/whatsnew#support-for-the-net-10-leftjoin-and-rightjoin-operators
+- [EF Core 10 の新機能 &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/ef/core/what-is-new/ef-core-10.0/whatsnew#support-for-the-net-10-leftjoin-and-rightjoin-operators)
