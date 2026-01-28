@@ -9,7 +9,7 @@ tags: efcore t-sql
 
 EF Core 10よりLeftJoinメソッドがサポートされるようになりました。以下参照ください。
 
-[EF Core - LefJoinメソッドで外部結合（leff outer join）する &#124; いちろぐ](https://ichiroku11.github.io/blog/2025/01/29/efcore-leftjoin.html)
+[EF Core - LefJoinメソッドで外部結合（leff outer join）する &#124; いちろぐ](https://ichiroku11.github.io/blog/2026/01/29/efcore-leftjoin.html)
 
 ---
 
