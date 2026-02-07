@@ -30,6 +30,7 @@ public IActionResult SignIn() {
 [Microsoft Entra 認証と承認のエラー コード - Microsoft identity platform &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/entra/identity-platform/reference-error-codes)
 
 説明の抜粋：
+
 |エラー|説明|
 |--|--|
 |AADSTS50058|UserInformationNotProvided - シングル サインオンに関するセッション情報が不十分です。 これは、ユーザーがサインインしていないことを意味します。 これは、ユーザーが認証されておらず、まだサインインしていないときに想定される一般的なエラーです。 <br>ユーザーがその前にサインインした SSO のコンテキストでこのエラーが発生する場合は、SSO セッションが見つからなかったか無効であったことを意味します。<br>prompt=none が指定されている場合、このエラーがアプリケーションに返される可能性があります。<br>以下原文：<br>UserInformationNotProvided - Session information isn't sufficient for single-sign-on. This means that a user isn't signed in. This is a common error that's expected when a user is unauthenticated and hasn't yet signed in.<br>If this error is encountered in an SSO context where the user has previously signed in, this means that the SSO session was either not found or invalid.<br>This error might be returned to the application if prompt=none is specified.|
