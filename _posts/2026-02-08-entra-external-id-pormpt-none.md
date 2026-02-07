@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Entra External ID - OIDCのprompt=noneに対応している"
-date: 
+date: 2026-02-08
 tags: entra-external-id
 ---
 
@@ -41,4 +41,3 @@ Error Code：50058
 Message：Session information is not sufficient for single-sign-on.
 Remediation：This means that a user is not signed in. This is a common error that's expected when a user is unauthenticated and has not yet signed in. If this error is encountered in an SSO context where the user has previously signed in, this means that the SSO session was either not found or invalid. This error may be returned to the application if prompt=none is specified.
 ```
-
