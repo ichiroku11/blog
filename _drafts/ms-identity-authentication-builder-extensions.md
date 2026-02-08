@@ -5,9 +5,9 @@ date:
 tags: ms-identity aspnetcore
 ---
 
-https://learn.microsoft.com/en-us/dotnet/api/microsoft.identity.web.microsoftidentitywebappauthenticationbuilderextensions.addmicrosoftidentitywebapp?view=msal-model-dotnet-latest
-
 `MicrosoftIdentityWebAppAuthenticationBuilderExtensions`には`AddMicrosoftIdentityWebApp`という名前の`AuthenticationBuilder`の拡張メソッドが3つあります。
+
+[MicrosoftIdentityWebAppAuthenticationBuilderExtensions.AddMicrosoftIdentityWebApp Method (Microsoft.Identity.Web) - Microsoft Authentication Library for .NET &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/dotnet/api/microsoft.identity.web.microsoftidentitywebappauthenticationbuilderextensions.addmicrosoftidentitywebapp?view=msal-model-dotnet-latest)
 
 違いがわからなかったので少し整理してみました。
 
@@ -16,6 +16,7 @@ https://learn.microsoft.com/en-us/dotnet/api/microsoft.identity.web.microsoftide
 
 ```cs
 // 1
+// IConfigurationSectionを受け取る
 public static MicrosoftIdentityWebAppAuthenticationBuilderWithConfiguration AddMicrosoftIdentityWebApp(
     this AuthenticationBuilder builder,
     IConfigurationSection configurationSection,
@@ -28,6 +29,7 @@ public static MicrosoftIdentityWebAppAuthenticationBuilderWithConfiguration AddM
     // を呼び出している
 
 // 2
+// IConfigurationを受け取る
 public static MicrosoftIdentityWebAppAuthenticationBuilderWithConfiguration AddMicrosoftIdentityWebApp(
     this AuthenticationBuilder builder,
     IConfiguration configuration,
@@ -39,6 +41,7 @@ public static MicrosoftIdentityWebAppAuthenticationBuilderWithConfiguration AddM
     // 内部では1のメソッドを呼び出している
 
 // 3
+// オプションをActionで設定する
 public static MicrosoftIdentityWebAppAuthenticationBuilder AddMicrosoftIdentityWebApp(
     this AuthenticationBuilder builder,
     Action<MicrosoftIdentityOptions> configureMicrosoftIdentityOptions,
@@ -50,7 +53,11 @@ public static MicrosoftIdentityWebAppAuthenticationBuilder AddMicrosoftIdentityW
     // 内部で
     // AddMicrosoftWebAppWithoutConfiguration（privateメソッド）
     // を呼び出している
+```
 
+ここからは上記から呼び出されるプライベートメソッドたち。
+
+```csharp
 // 1から呼び出される
 private static MicrosoftIdentityWebAppAuthenticationBuilderWithConfiguration AddMicrosoftIdentityWebAppWithConfiguration(
     this AuthenticationBuilder builder,
@@ -90,8 +97,8 @@ private static void AddMicrosoftIdentityWebAppInternal(
 ```
 
 ソースコードはこちら。
-// todo:
-https://github.com/AzureAD/microsoft-identity-web/blob/master/src/Microsoft.Identity.Web/WebAppExtensions/MicrosoftIdentityWebAppAuthenticationBuilderExtensions.cs
+
+[microsoft-identity-web/src/Microsoft.Identity.Web/WebAppExtensions/MicrosoftIdentityWebAppAuthenticationBuilderExtensions.cs at master · AzureAD/microsoft-identity-web](https://github.com/AzureAD/microsoft-identity-web/blob/master/src/Microsoft.Identity.Web/WebAppExtensions/MicrosoftIdentityWebAppAuthenticationBuilderExtensions.cs)
 
 コードを追っていると最終的には`AddMicrosoftIdentityWebAppInternal`という内部メソッドを呼んでいることがわかりました。
 
