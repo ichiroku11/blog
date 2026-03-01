@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Microsoft Identity Web - AuthenticationBuilderの拡張メソッド「AddMicrosoftIdentityWebApp」を整理する"
-date: 2026-03-02
+date: 
 tags: ms-identity aspnetcore
 ---
 
