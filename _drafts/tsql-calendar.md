@@ -18,7 +18,7 @@ tags: t-sql
 declare @date date = '2026/04/14';
 
 select
-    datetrunc(m, @date) as [Beginning],
+    datetrunc(month, @date) as [Beginning],
     eomonth(@date) as [End];
 /*
 Beginning  End
@@ -43,5 +43,44 @@ select
 上記をふまえて、月初から月末までの日付を再帰CTEを利用して取得してみます。
 
 ```sql
--- todo:
+-- 日付を指定して取得する場合
+declare @date datetime = '2026/04/14';
+
+with Calendar(Date)
+as(
+	select cast(datetrunc(month, @date) as date) as Date
+	union all
+	select dateadd(day, 1, Date)
+	from Calendar
+	where Date < eomonth(@date)
+)
+select *
+from Calendar;
+/*
+Date
+----------
+2026-04-01
+2026-04-02
+（省略）
+2026-04-29
+2026-04-30
+*/
+
+-- 年と月を指定して取得する場合
+declare @year int = 2026;
+declare @month int = 4;
+
+with Calendar(Date)
+as(
+	select datefromparts(@year, @month, 1)
+	union all
+	select dateadd(day, 1, Date)
+	from Calendar
+	where Date < eomonth(datefromparts(@year, @month, 1))
+)
+select *
+from Calendar;
+/*
+（結果は同じになるので省略）
+*/
 ```
