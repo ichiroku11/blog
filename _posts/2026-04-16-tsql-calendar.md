@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "T-SQL - ある月の日付一覧を取得するクエリ"
-date: 
+date: 2026-04-16
 tags: t-sql
 ---
 
