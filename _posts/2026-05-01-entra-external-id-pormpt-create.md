@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Entra External ID - OIDCのprompt=createに対応している"
-date: 
+date: 2026-05-01
 tags: entra-external-id
 ---
 
