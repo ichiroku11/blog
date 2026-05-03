@@ -48,11 +48,11 @@ declare @date datetime = '2026/04/14';
 
 with Calendar(Date)
 as(
-	select cast(datetrunc(month, @date) as date) as Date
-	union all
-	select dateadd(day, 1, Date)
-	from Calendar
-	where Date < eomonth(@date)
+    select cast(datetrunc(month, @date) as date) as Date
+    union all
+    select dateadd(day, 1, Date)
+    from Calendar
+    where Date < eomonth(@date)
 )
 select *
 from Calendar;
@@ -72,11 +72,11 @@ declare @month int = 4;
 
 with Calendar(Date)
 as(
-	select datefromparts(@year, @month, 1)
-	union all
-	select dateadd(day, 1, Date)
-	from Calendar
-	where Date < eomonth(datefromparts(@year, @month, 1))
+    select datefromparts(@year, @month, 1)
+    union all
+    select dateadd(day, 1, Date)
+    from Calendar
+    where Date < eomonth(datefromparts(@year, @month, 1))
 )
 select *
 from Calendar;
