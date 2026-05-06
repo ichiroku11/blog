@@ -5,9 +5,9 @@ date:
 tags: t-sql sql-server
 ---
 
-SQL Serverで指定した日付の曜日を示す数字を取得するには`DATEPART`関数を使いますが、`@@DATEFIRST`の値によりこの関数が返す値が変わってきます。
+SQL Serverで指定した日付の曜日を示す数字を取得するには`DATEPART`関数を使います。
 
-変更できるようになっているというか、扱いに少し癖があるというか。
+`DATEPART`関数の戻り値自体は1～7の数値ですが、戻り値が何曜日かは`@@DATEFIRST`の値により変わってきます。
 
 例えば"日曜日は0、月曜日は1、..."といったように値が固定されていません。
 
@@ -18,7 +18,6 @@ SQL Serverで指定した日付の曜日を示す数字を取得するには`DAT
 ```sql
 -- datepart(dw, @date)
 -- 日付から曜日を示す数字（1～7）を取得する
--- @datefirstが7の場合、1：日曜日～7：土曜日’（日曜日始まり）となる
 
 -- @dateから1週間分の日付一覧を取得して、曜日を確認する
 declare @date date = '2026/05/03';
@@ -42,7 +41,6 @@ from Week;
 Date       datename datepart
 ---------- -------- -----------
 2026-05-03 日曜日      1
-
 2026-05-04 月曜日      2
 2026-05-05 火曜日      3
 2026-05-06 水曜日      4
@@ -52,10 +50,10 @@ Date       datename datepart
 */
 ```
 
-`DATEPART`関数は、日曜日：`1`～土曜日：`7`を返していることを確認できました。
+`DATEPART`関数の戻り値が1（日曜日）～7（土曜日）であることを確認できました。
 
-続いて`@@DATEFIRST`の値を日本語環境で確認したところ、デフォルトでは`@@datefirst`の値は`7`となっていました。
-`7`つまり**日曜日始まり**ということになり、指定した日付が日曜日のときに`1`を返すようになっているようです。
+続いて`@@DATEFIRST`の値を日本語環境で確認したところ、デフォルトでは`@@datefirst`の値は7となっていました。
+7つまり**日曜日始まり**ということになり、指定した日付が日曜日のときに`1`を返すようになっているようです。
 
 ```sql
 -- @@datefirst
@@ -72,5 +70,6 @@ select @@datefirst as [@@datefirst];
 
 ややこし。
 
+// todo:
 - https://learn.microsoft.com/ja-jp/sql/t-sql/functions/datepart-transact-sql?view=sql-server-ver17#week-and-weekday-datepart-arguments
 - https://learn.microsoft.com/ja-jp/sql/t-sql/functions/datefirst-transact-sql?view=sql-server-ver17
