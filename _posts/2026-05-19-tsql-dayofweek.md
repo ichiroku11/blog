@@ -1,11 +1,15 @@
 ---
 layout: post
 title: "T-SQL - 曜日についてDATEPART関数と@@DATEFIRSTを確認する"
-date: 
+date: 2026-05-19
 tags: t-sql sql-server
 ---
 
 SQL Serverで指定した日付の曜日を示す数字を取得するには`DATEPART`関数を使います。
+
+```sql
+datepart(dw, Date)
+```
 
 `DATEPART`関数の戻り値自体は1～7の数値ですが、戻り値が何曜日かは`@@DATEFIRST`の値により変わってきます。
 
@@ -67,8 +71,6 @@ select @@datefirst as [@@datefirst];
 7
 */
 ```
-
-ややこし。
 
 ### 参考
 
