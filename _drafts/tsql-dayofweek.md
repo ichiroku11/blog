@@ -70,6 +70,7 @@ select @@datefirst as [@@datefirst];
 
 ややこし。
 
-// todo:
-- https://learn.microsoft.com/ja-jp/sql/t-sql/functions/datepart-transact-sql?view=sql-server-ver17#week-and-weekday-datepart-arguments
-- https://learn.microsoft.com/ja-jp/sql/t-sql/functions/datefirst-transact-sql?view=sql-server-ver17
+### 参考
+
+- [DATEPART(Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/t-sql/functions/datepart-transact-sql?view=sql-server-ver17#week-and-weekday-datepart-arguments)
+- [@@DATEFIRST(Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/t-sql/functions/datefirst-transact-sql?view=sql-server-ver17)
