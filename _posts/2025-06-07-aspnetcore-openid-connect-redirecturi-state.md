@@ -28,14 +28,14 @@ public IActionResult SignIn() {
 1. Authentication Requestの`redirect_uri`で指定したURL（IdPに登録したコールバックURL）にリダイレクト
 2. `AuthenticationProperties.RedirectUri`プロパティで指定したURLにリダイレクト
 
-## AuthenticationProperties.RedirectUriはstateパラメーターにシリアライズされることを確認する
+### AuthenticationProperties.RedirectUriはstateパラメーターにシリアライズされることを確認する
 
 `AuthenticationProperties.RedirectUri`で指定したURLは、`redirect_uri`パラメーターには含まれないのですが、
 どうやって覚えているかというと`state`パラメーターにシリアライズされIdPに渡されて、リダイレクト後のコールバックで返されます。
 
 ということで、`state`パラメーターにシリアライズされている部分のコードを確認してみたいと思います。
 
-### OpenIdConnectHandler
+#### OpenIdConnectHandler
 
 まず、IdPへのリダイレクトを処理している`OpenIdConnectHandler.HandleChallengeAsyncInternal`メソッドを確認してみましょう。
 `AuthenticationProperties`の値を何かしら保護（加工）して`state`パラメーターに設定しています。
@@ -46,7 +46,7 @@ message.State = Options.StateDataFormat.Protect(properties);
 
 - [aspnetcore/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectHandler.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectHandler.cs#L480)
 
-### OpenIdConnectOptions
+#### OpenIdConnectOptions
 
 次に、`OpenIdConnectOptions.StateDataFormat`プロパティを確認すると、`ISecureDataFormat<AuthenticationProperties>`という型になっていることがわかります。
 
@@ -56,7 +56,7 @@ public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; }
 
 - [aspnetcore/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectOptions.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/OpenIdConnect/src/OpenIdConnectOptions.cs#L263)
 
-### PropertiesDataFormat、SecureDataFormat<TData>
+#### PropertiesDataFormat、SecureDataFormat<TData>
 
 このインターフェイスは`PropertiesDataFormat`、さらに`SecureDataFormat<TData>`で実装されています。
 `SecureDataFormat.Protect`メソッドは、TData型のデータをシリアライズして暗号化するメソッドです。
@@ -80,7 +80,7 @@ public string Protect(TData data, string? purpose)
 - [aspnetcore/src/Security/Authentication/Core/src/PropertiesDataFormat.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/Core/src/PropertiesDataFormat.cs)
 - [aspnetcore/src/Security/Authentication/Core/src/SecureDataFormat.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/Core/src/SecureDataFormat.cs#L35-L47)
 
-### PropertiesSerializer
+#### PropertiesSerializer
 
 上記コードでは`PropertiesSerializer.Serialize`メソッドを呼び出しています。コードをたどっていくと、`AuthenticationProperties.Items`をシリアライズしていることがわかります。
 
@@ -116,12 +116,12 @@ public virtual void Write(BinaryWriter writer, AuthenticationProperties properti
 
 - [aspnetcore/src/Security/Authentication/Core/src/PropertiesSerializer.cs at main · dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/Core/src/PropertiesSerializer.cs#L33-L58)
 
-## まとめ
+### まとめ
 
 `AuthenticationProperties.RedirectUri`は、`state`パラメーターにシリアライズされてIdPに渡されます。
 この処理をASP.NET Coreのコードを追って確認しました。
 
-## 参考
+### 参考
 - [Final: OpenID Connect Core 1.0 incorporating errata set 2](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)
 ```
 redirect_uri

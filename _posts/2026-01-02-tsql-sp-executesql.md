@@ -20,7 +20,7 @@ Executes commands that return rows. For increased performance, ExecuteReader inv
 
 [sp_executesql (Transact-SQL) - SQL Server &#124; Microsoft Learn](https://learn.microsoft.com/ja-jp/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql)
 
-## パラメーターを1つ渡す
+### パラメーターを1つ渡す
 
 パラメーターを1つ渡す場合は次のようにします。
 
@@ -51,7 +51,7 @@ execute sp_executesql
     @p = '1';
 ```
 
-## パラメーターを2つ（複数）渡す
+### パラメーターを2つ（複数）渡す
 
 パラメーターを2つ渡す場合です。
 パラメーターの型を指定（`@params`）では、`@p1 int, @p2 int`のようにカンマ区切りで複数のパラメーターを指定します。
@@ -77,7 +77,7 @@ execute sp_executesql
     @p2 = '2';
 ```
 
-## OUT、OUTPUTパラメーターを使う
+### OUT、OUTPUTパラメーターを使う
 
 OUT、OUTPUTパラメーターを使う場合は、次のように指定します。どうも`out`のキーワードを2カ所指定する必要があるようです。
 
@@ -97,7 +97,7 @@ Value
 */
 ```
 
-## 変数を使ってストアドプロシージャを呼び出す
+### 変数を使ってストアドプロシージャを呼び出す
 
 `sp_executesql`の引数は文字列なので、SQL文やパラメーターを文字列変数に格納して実行することもできます。
 

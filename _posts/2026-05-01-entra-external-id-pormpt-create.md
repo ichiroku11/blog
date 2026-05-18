@@ -43,7 +43,7 @@ Indicates the type of user interaction that is required. Valid values are login,
 - prompt=select_account interrupts single sign-on providing account selection experience listing all the accounts either in session or any remembered account or an option to choose to use a different account altogether.
 ```
 
-## 参考
+### 参考
 
 - [Initiating User Registration via OpenID Connect 1.0](https://openid.net/specs/openid-connect-prompt-create-1_0.html)
 
