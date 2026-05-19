@@ -7,7 +7,7 @@ tags: t-sql sql-server dotnet
 
 前回、SQL Serverの曜日の値を`DATEPART`関数を使って取得し、`@@DATEFIRST`の値に依存することを確認しました。
 
-// todo:
+[T-SQL - 曜日についてDATEPART関数と@@DATEFIRSTを確認する &#124; いちろぐ](/blog/2026/05/19/tsql-dayofweek.html)
 
 一方で.NETの曜日（DayOfWeek）は0～6になっています。
 ```csharp
