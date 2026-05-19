@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "T-SQL - 曜日を.NETのDayOfWeekにあわせる"
-date: 
+date: 2026-05-20
 tags: t-sql sql-server dotnet
 ---
 
