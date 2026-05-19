@@ -7,7 +7,7 @@ tags: efcore t-sql
 
 EF CoreでLefJoinメソッドを使って外部結合できるようになったので、以前書いたGroupJoinを使ったサンプルを書き直してみました。
 
-[EF Core - GroupJoinメソッドで外部結合（leff outer join）する &#124; いちろぐ](https://ichiroku11.github.io/blog/2022/03/29/efcore-groupjoin.html)
+[EF Core - GroupJoinメソッドで外部結合（leff outer join）する &#124; いちろぐ](/blog/2022/03/29/efcore-groupjoin.html)
 
 ### サンプルのテーブルとデータ
 
